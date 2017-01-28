@@ -13,7 +13,7 @@ var logger = require('loglevel-message-prefix')(require('loglevel'), {
 
 logger.setLevel('debug');
 
-var buffer = fs.readFileSync(path.join(__dirname, 'mastercard.csv'), "utf8");
+var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
 var lines = CSVParser.parse(buffer);
 
 process.stdout.write(CSVWriter.write(lines));
