@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>Toolkit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+<style type="text/css">
+.drop-zone {
+	height: 200px;
+	border-width: 2px;
+	margin-bottom: 20px;
+	color: #ccc;
+	border-style: dashed;
+	border-color: #ccc;
+	line-height: 200px;
+	text-align: center
+}
+
+.on-drop {
+	color: #222;
+	border-color: #222;
+}
+</style>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>
+					<strong>Toolkit</strong>
+				</h4>
+			</div>
+			<div class="panel-body">
+				<!-- Drop Zone -->
+				<h4>Drag and drop files below</h4>
+				<div class="drop-zone" id="drop-zone">Just drag and drop files here</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/loglevel/1.4.0/loglevel.min.js"></script>
+
+<script src="file-helper.js"></script>
+<script src="csv-parser.js"></script>
+<script src="drag-drop.js"></script>
+
+<script>log.setLevel("trace");</script>
+
+</html>

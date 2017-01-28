@@ -4,7 +4,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', /* @callback */ function (req, res) {
-  res.redirect('/test-bootstrap.html');
+  res.redirect('/toolkit.html');
 });
 
 app.use(express.static('app'));
