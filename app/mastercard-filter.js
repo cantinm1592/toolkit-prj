@@ -2,7 +2,7 @@
 (function() {
   
   var logger = typeof window !== 'undefined' ? window.log : require('loglevel');
-  logger.setLevel('debug');
+  logger.setLevel('info');
   
   var accountName = "MASTERCARD";
   var personByCardLastNumber = {
