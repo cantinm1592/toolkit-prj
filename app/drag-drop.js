@@ -4,11 +4,12 @@ var FileHelper = window.FileHelper;
 var CSVParser = window.CSVParser;
 var CSVWriter = window.CSVWriter;
 
+var logger = window.log;
 var dropZone = document.getElementById('drop-zone');
 
 dropZone.ondrop = function(e) {
   
-  console.log("ondrop() : begin");
+  logger.debug("ondrop() : begin");
   
   e.preventDefault();
   this.className = 'drop-zone';
@@ -16,14 +17,14 @@ dropZone.ondrop = function(e) {
   var files = e.dataTransfer.files;
   
   for(var i = 0; i < files.length; ++i) {
-    console.log("ondrop() : processing file \'" + files[i].name + "' file");
+    logger.info("ondrop() : processing file \'" + files[i].name + "' file");
     FileHelper.processAsText(files[i], function(text) {
       var lines = CSVParser.parse(text);
-      console.log(CSVWriter.write(lines));
+      logger.info(CSVWriter.write(lines));
     });
   }
 
-  console.log("ondrop() : end");
+  logger.debug("ondrop() : end");
 };
 
 dropZone.ondragover = function() {
