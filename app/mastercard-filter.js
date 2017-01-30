@@ -1,12 +1,14 @@
 /* eslint-env browser, node */
 (function() {
   
+  var Transaction = typeof window !== 'undefined' ? window.Transaction : require('./transaction.js');
+  
   var logger = typeof window !== 'undefined' ? window.log : require('loglevel');
   logger.setLevel('info');
   
-  var accountName = "MASTERCARD";
-  var personByCardLastNumber = {
-  }
+  var account = "MASTERCARD";
+  var cardLastNumberToExclude = 8;
+  var personByCardLastNumber = {4: "Julie", 6: "Maxime"};
   
   var MasterCardFilter = function(){};
 
@@ -14,25 +16,24 @@
     
     logger.debug('MasterCardFilter.parse() : begin');
     
-    var linesIn = lines;
-    var linesOut = new Array();
+    var transactions = new Array();
     
-    linesOut[0] = ['Date', 'Description', 'Montant', 'Compte', 'Par', 'Poste', 'Catégorie', 'Réserve'];
-    
-    for(var i = 0; i < lines.length; i++) {
-      var lineOut = new Array();
-      lineOut[0] = linesIn[i][3].replace(/\//g, '-');
-      lineOut[1] = linesIn[i][5];
-      lineOut[2] = linesIn[i][11]; //.replace('.', ',');
-      lineOut[3] = accountName;
-      linesOut[i + 1] = lineOut;
-    }
-    
-    logger.debug('linesOut =', linesOut);
+    lines.forEach(function(line) {
+      if(!line[0].endsWith(cardLastNumberToExclude)) {
+        var transaction = new Transaction();
+        transaction.date = line[3].replace(/\//g, '-');
+        transaction.description = line[5];
+        transaction.amount = (line[11] !== '' ? line[11] : '-' + line[12]).replace('.', ',');
+        transaction.account = account;
+        logger.debug("line[0].slice(-1) = ", line[0].slice(-1));
+        transaction.person = personByCardLastNumber[line[0].slice(-1)];
+        transactions.push(transaction);
+      }
+    });
     
     logger.debug('MasterCardFilter.parse() : end');
     
-    return linesOut;
+    return transactions;
   };
 
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')

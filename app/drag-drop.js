@@ -3,6 +3,7 @@
 var FileHelper = window.FileHelper;
 var CSVParser = window.CSVParser;
 var CSVWriter = window.CSVWriter;
+var MasterCardFilter = window.MasterCardFilter;
 
 var logger = window.log;
 var dropZone = document.getElementById('drop-zone');
@@ -20,7 +21,7 @@ dropZone.ondrop = function(e) {
     logger.info("ondrop() : processing file \'" + files[i].name + "' file");
     FileHelper.processAsText(files[i], function(text) {
       var lines = CSVParser.parse(text);
-      logger.info(CSVWriter.write(lines));
+      logger.info(MasterCardFilter.filter(lines));
     });
   }
 

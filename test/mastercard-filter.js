@@ -11,33 +11,66 @@ var logger = require('loglevel-message-prefix')(require('loglevel'), {
     prefixFormat: "    [%p]",
 });
 
-logger.setLevel('info');
-
+var Transaction = require('../app/transaction.js');
 var CSVParser = require('../app/csv-parser.js');
 var MasterCardFilter = require('../app/mastercard-filter.js');
 
 var buffer = fs.readFileSync(path.join(__dirname, 'csv-parser.csv'), "utf8");
-var linesIn = CSVParser.parse(buffer);
-var linesOut = MasterCardFilter.filter(linesIn);
+var lines = CSVParser.parse(buffer);
+var transactions = MasterCardFilter.filter(lines);
+
+logger.setLevel('debug');
 
 describe("MasterCardFilter", function() {
   
-  describe("#filter()", function() {
+  describe("#filter(lines)", function() {
     
-    it('should return an array (CSV lines)', function() {
-      expect(linesOut).to.be.an('array');
+    it('should return an array of Transaction objects', function() {
+      expect(transactions).to.be.an('array');
+      transactions.forEach(function(transaction) {
+        expect(transaction).to.be.an.instanceof(Transaction);
+      });
     });
     
-    it('should return an array of "linesIn.length + 1" (header line added)', function() {
-      expect(linesOut.length).to.equal(linesIn.length + 1);
+    it('should return an array of the same length minus 1 than the lines parameter (exclude monthly payment line)', function() {
+      expect(transactions.length).to.equal(lines.length -1);
     });
     
-    it('linesOut[i][0] should be string and match the pattern /\d{4}-\d{2}-\d{2}/', function() {
-      for(var i = 1; i < linesOut.length; i++) {
-        expect(linesOut[i][0],'linesOut[' + i + '].columns[0]').to.be.a('string');
-        expect(linesOut[i][0],'linesOut[' + i + '].columns[0]').to.match(/\d{4}-\d{2}-\d{2}/);
-      }
+    it('should return objects with date property that matches the pattern /\d{4}-\d{2}-\d{2}/', function() {
+      transactions.forEach(function(transaction) {
+        expect(transaction.date, transaction.description).to.be.a('string');
+        expect(transaction.date, transaction.description).to.match(/\d{4}-\d{2}-\d{2}/);
+      });
     });
+    
+    it('should return objects with description property that are non-empty string', function() {
+      transactions.forEach(function(transaction) {
+        expect(transaction.description).to.be.a('string');
+        expect(transaction.description).to.be.not.empty;
+      });
+    });    
+    
+    it('should return objects with amount property that matches the pattern /\d*,\d*/', function() {
+      transactions.forEach(function(transaction) {
+        expect(transaction.amount, transaction.description).to.be.a('string');
+        expect(transaction.amount, transaction.description).to.match(/\d*,\d*/);
+      });
+    });
+    
+    it('should return objects with account property that have the following value : MASTERCARD, EOP', function() {
+      transactions.forEach(function(transaction) {
+        expect(transaction.account, transaction.description).to.be.a('string');
+        expect(transaction.account, transaction.description).to.be.oneOf(['MASTERCARD', 'EOP']);
+      });
+    });
+    
+    it('should return objects with person property that have the following value : Maxime, Julie', function() {
+      transactions.forEach(function(transaction) {
+        expect(transaction.person, transaction.description).to.be.a('string');
+        expect(transaction.person, transaction.description).to.be.oneOf(['Maxime', 'Julie']);
+      });
+    }); 
+    
   });
   
 });

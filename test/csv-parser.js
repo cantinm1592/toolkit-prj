@@ -44,9 +44,8 @@ describe("CSVParser", function() {
     
     it('should return CSV columns that are string', function() {
       for(var i = 0; i < lines.length; i++) {
-        var columns = lines[i];
-        for(var j = 0; j < columns.length; j++) {  
-          expect(columns[j], 'lines[' + i + '].columns[' + j + ']').to.be.a('string');      
+        for(var j = 0; j < lines[i].length; j++) {  
+          expect(lines[i][j], 'lines[' + i + '].columns[' + j + ']').to.be.a('string');      
         }
       }
     });
