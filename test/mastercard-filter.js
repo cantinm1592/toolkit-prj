@@ -19,7 +19,7 @@ var buffer = fs.readFileSync(path.join(__dirname, 'csv-parser.csv'), "utf8");
 var lines = CSVParser.parse(buffer);
 var transactions = MasterCardFilter.filter(lines);
 
-logger.setLevel('debug');
+logger.setLevel('info');
 
 describe("MasterCardFilter", function() {
   

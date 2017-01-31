@@ -25,7 +25,7 @@
         transaction.description = line[5];
         transaction.amount = (line[11] !== '' ? line[11] : '-' + line[12]).replace('.', ',');
         transaction.account = account;
-        logger.debug("line[0].slice(-1) = ", line[0].slice(-1));
+        logger.trace("line[0].slice(-1) = ", line[0].slice(-1));
         transaction.person = personByCardLastNumber[line[0].slice(-1)];
         transactions.push(transaction);
       }

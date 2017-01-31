@@ -2,11 +2,12 @@
 
 var FileHelper = window.FileHelper;
 var CSVParser = window.CSVParser;
-var CSVWriter = window.CSVWriter;
+var TransactionWriter = window.TransactionWriter;
 var MasterCardFilter = window.MasterCardFilter;
 
 var logger = window.log;
 var dropZone = document.getElementById('drop-zone');
+var outputZone = document.getElementById('output-zone');
 
 dropZone.ondrop = function(e) {
   
@@ -18,10 +19,16 @@ dropZone.ondrop = function(e) {
   var files = e.dataTransfer.files;
   
   for(var i = 0; i < files.length; ++i) {
+    outputZone.innerHTML = "";
     logger.info("ondrop() : processing file \'" + files[i].name + "' file");
     FileHelper.processAsText(files[i], function(text) {
       var lines = CSVParser.parse(text);
-      logger.info(MasterCardFilter.filter(lines));
+      var headers = ['date', 'description', 'amount', 'account', 'person'];
+      var headersName = {'date':'Date', 'description':'Description', 'amount':'Montant', 'account':'Compte', 'person':'Par'};
+      var output = TransactionWriter.write(MasterCardFilter.filter(lines), headers, headersName);
+      output = output.replace(/\n/g, "\n<br/>");
+      outputZone.innerHTML += output;
+      outputZone.innerHTML += '<br/>';
     });
   }
 

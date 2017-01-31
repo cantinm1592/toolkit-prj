@@ -21,6 +21,11 @@
 	text-align: center
 }
 
+.output-zone {
+  font-family: Helvetica;
+  font-size: 15px;
+}
+
 .on-drop {
 	color: #222;
 	border-color: #222;
@@ -30,17 +35,28 @@
 </head>
 
 <body>
-	<div class="container">
-		<div class="panel panel-default">
+	<div class="container" style="">
+    <h1>Toolkit</h1>
+		<div class="panel panel-default" style="margin-top: 20px">
 			<div class="panel-heading">
 				<h4>
-					<strong>Toolkit</strong>
+					<strong>Input</strong>
 				</h4>
 			</div>
 			<div class="panel-body">
 				<!-- Drop Zone -->
 				<h4>Drag and drop files below</h4>
 				<div class="drop-zone" id="drop-zone">Just drag and drop files here</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4>
+					<strong>Ouput</strong>
+				</h4>
+			</div>
+			<div class="panel-body">
+				<div class="output-zone" id="output-zone"><h4>{...}</h4></div>
 			</div>
 		</div>
 	</div>
@@ -54,6 +70,7 @@
 <script src="file-helper.js"></script>
 <script src="csv-parser.js"></script>
 <script src="csv-writer.js"></script>
+<script src="transaction-writer.js"></script>
 <script src="mastercard-filter.js"></script>
 <script src="drag-drop.js"></script>
 

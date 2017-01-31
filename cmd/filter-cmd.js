@@ -2,6 +2,7 @@
 
 var CSVParser = require('../app/csv-parser.js');
 var MasterCardFilter = require('../app/mastercard-filter.js');
+var TransactionWriter = require('../app/transaction-writer.js');
 
 var path = require('path');
 var fs = require('fs');
@@ -16,4 +17,7 @@ logger.setLevel('info');
 var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
 var lines = CSVParser.parse(buffer);
 
-console.log(MasterCardFilter.filter(lines));
+var headers = ['date', 'description', 'amount', 'account', 'person'];
+var headersName = {'date':'Date', 'description':'Description', 'amount':'Montant', 'account':'Compte', 'person':'Par'};
+
+process.stdout.write(TransactionWriter.write(MasterCardFilter.filter(lines), headers, headersName));
