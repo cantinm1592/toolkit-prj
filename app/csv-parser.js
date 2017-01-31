@@ -14,25 +14,30 @@
     var linesAsArray = new Array();
     var linesAsString = buffer.split(eol);
     
-    for(var i = 0; i < linesAsString.length; i++) {
-
-      // Split line string in an array that represents columns
-      linesAsArray[i] = linesAsString[i].split(delimiter);
+    linesAsString.forEach(function(lineAsString) {
       
-      // Remove double quote around column values of this line
-      for(var j = 0; j < linesAsArray[i].length; j++) {
-        var columnValue = linesAsArray[i][j];
-        if(typeof columnValue === 'string') {
-          linesAsArray[i][j] = columnValue.toString().replace(/(^"|"$)/g, '');
-        }
+      // Split line string in an array that represents columns
+      var lineAsArray = lineAsString.split(delimiter);
+      
+      if(lineAsArray.length > 1) {
         
-        if(i === 0) {
-          logger.trace("trimValue = %" + linesAsArray[i][j] + "%");
+        logger.debug("lineAsArray.length =", lineAsArray.length);
+        if(lineAsArray.length === 1) {  
+          logger.debug("lineAsArray =", linesAsArray);
         }
+  
+        // Remove double quote around column values of this line      
+        lineAsArray.forEach(function(column, index, lineAsArray) {
+          if(typeof column === 'string') {
+            lineAsArray[index] = column.toString().replace(/(^"|"$)/g, '');
+          }
+        });
+        
+        linesAsArray.push(lineAsArray);
       }
-    }
+    });
     
-    logger.trace(linesAsArray);
+    logger.debug("linesAsArray =", linesAsArray);
     logger.debug('CSVParser.parse() : end');
     
     return linesAsArray;
