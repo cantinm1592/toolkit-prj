@@ -17,9 +17,9 @@ logger.setLevel('info');
 
 describe("CSVParser", function() {
   
-  describe("#parse()", function() {
+  describe("#parse(buffer)", function() {
     
-    var buffer = fs.readFileSync(path.join(__dirname, 'csv-parser.csv'), "utf8");
+    var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
     var lines = CSVParser.parse(buffer);
     
     it('should return an array (CSV lines)', function() {

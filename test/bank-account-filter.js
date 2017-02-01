@@ -13,15 +13,17 @@ var logger = require('loglevel-message-prefix')(require('loglevel'), {
 
 var Transaction = require('../app/transaction.js');
 var CSVParser = require('../app/csv-parser.js');
-var CreditCardFilter = require('../app/credit-card-filter.js');
+var BankAccountFilter = require('../app/bank-account-filter.js');
 
-var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
+var buffer = fs.readFileSync(path.join(__dirname, 'eop_20161222.csv'), "utf8");
 var lines = CSVParser.parse(buffer);
-var transactions = CreditCardFilter.filter(lines);
+var transactions = BankAccountFilter.filter(lines);
 
 logger.setLevel('info');
 
-describe("CreditCardFilter", function() {
+logger.debug("transactions =", transactions);
+
+describe("BankAccountFilter", function() {
   
   describe("#filter(lines)", function() {
     
@@ -30,10 +32,6 @@ describe("CreditCardFilter", function() {
       transactions.forEach(function(transaction) {
         expect(transaction).to.be.an.instanceof(Transaction);
       });
-    });
-    
-    it('should return an array of the same length minus 1 than the lines parameter (exclude monthly payment line)', function() {
-      expect(transactions.length).to.equal(lines.length -1);
     });
     
     it('should return objects with date property that matches the pattern /\d{4}-\d{2}-\d{2}/', function() {
@@ -50,6 +48,15 @@ describe("CreditCardFilter", function() {
       });
     });    
     
+    var keywordBlocked = ['Allocation', 'Depot', 'Interet', 'Paie /'];
+    keywordBlocked.forEach(function(keyword) {
+      it("should return objects with description property that does not contain the value '" + keyword + "'", function() {  
+        transactions.forEach(function(transaction) {
+          expect(transaction.description).to.not.have.string(keyword);
+        });
+      });
+    });
+    
     it('should return objects with amount property that matches the pattern /\d*,\d*/', function() {
       transactions.forEach(function(transaction) {
         expect(transaction.amount, transaction.description).to.be.a('string');
@@ -57,17 +64,17 @@ describe("CreditCardFilter", function() {
       });
     });
     
-    it("should return objects with account property that has the following value 'MASTERCARD'", function() {
+    it("should return objects with account property that has the following value 'EOP'", function() {
       transactions.forEach(function(transaction) {
         expect(transaction.account, transaction.description).to.be.a('string');
-        expect(transaction.account, transaction.description).to.equal('MASTERCARD');
+        expect(transaction.account, transaction.description).to.be.oneOf(['EOP']);
       });
     });
     
-    it("should return objects with person property that have the following value : 'Maxime', 'Julie'", function() {
+    it("should return objects with person property that has the following value 'Maxime'", function() {
       transactions.forEach(function(transaction) {
         expect(transaction.person, transaction.description).to.be.a('string');
-        expect(transaction.person, transaction.description).to.be.oneOf(['Maxime', 'Julie']);
+        expect(transaction.person, transaction.description).to.be.oneOf(['Maxime']);
       });
     }); 
     

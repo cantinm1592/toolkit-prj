@@ -18,8 +18,8 @@ var CSVWriter = require('../app/csv-writer.js');
 
 describe("CSVWriter", function() {
   
-  describe("#write()", function() {
-    var buffer = fs.readFileSync(path.join(__dirname, 'csv-parser.csv'), "utf8");
+  describe("#write(lines)", function() {
+    var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
     var lines = CSVParser.parse(buffer);
     var output = CSVWriter.write(lines);
     
