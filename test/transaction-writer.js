@@ -12,7 +12,7 @@ var logger = require('loglevel-message-prefix')(require('loglevel'), {
 });
 
 var CSVParser = require('../app/csv-parser.js');
-var MasterCardFilter = require('../app/mastercard-filter.js');
+var CreditCardFilter = require('../app/credit-card-filter.js');
 var TransactionWriter= require('../app/transaction-writer.js');
 
 var headers = ['date', 'description', 'amount', 'account', 'person'];
@@ -26,7 +26,7 @@ describe("TransactionWriter", function() {
   
     var buffer = fs.readFileSync(path.join(__dirname, 'csv-parser.csv'), "utf8");
     var lines = CSVParser.parse(buffer);
-    var transactions = MasterCardFilter.filter(lines);
+    var transactions = CreditCardFilter.filter(lines);
     var output = TransactionWriter.write(transactions, headers, headersName);
     
     it('should return a string', function() {

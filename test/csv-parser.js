@@ -11,9 +11,9 @@ var logger = require('loglevel-message-prefix')(require('loglevel'), {
     prefixFormat: "    [%p]",
 });
 
-logger.setLevel('info');
-
 var CSVParser = require('../app/csv-parser.js');
+
+logger.setLevel('info');
 
 describe("CSVParser", function() {
   
@@ -28,7 +28,19 @@ describe("CSVParser", function() {
     
     it('should return an array of 106 CSV lines (file = csv-parser.csv)', function() {
       expect(lines.length).to.equal(106);
-    });
+    });    
+    
+    it('should skip empty lines and do not add them to the array', function() {
+      var lastLines = lines[lines.length - 1];
+      logger.debug("lastLine =", lastLines);
+      var empty = true;
+      lastLines.forEach(function(column) {
+        if(column !== '') {
+          empty = false;
+        }
+      });
+      expect(empty).to.be.false;
+    });    
     
     it('should return CSV lines that are array (CSV columns)', function() {
       for(var i = 0; i < lines.length; i++) {
@@ -59,5 +71,6 @@ describe("CSVParser", function() {
         }
       }
     });
+    
   });
 });

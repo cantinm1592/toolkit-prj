@@ -10,11 +10,11 @@
   var cardLastNumberToExclude = 8;
   var personByCardLastNumber = {4: "Julie", 6: "Maxime"};
   
-  var MasterCardFilter = function(){};
+  var CreditCardFilter = function(){};
 
-  MasterCardFilter.filter = function filter(lines) {
+  CreditCardFilter.filter = function filter(lines) {
     
-    logger.debug('MasterCardFilter.parse() : begin');
+    logger.debug('CreditCardFilter.parse() : begin');
     
     var transactions = new Array();
     
@@ -31,13 +31,13 @@
       }
     });
     
-    logger.debug('MasterCardFilter.parse() : end');
+    logger.debug('CreditCardFilter.parse() : end');
     
     return transactions;
   };
 
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
-    module.exports = MasterCardFilter;
+    module.exports = CreditCardFilter;
   else
-    window.MasterCardFilter = MasterCardFilter;
+    window.CreditCardFilter = CreditCardFilter;
 })();

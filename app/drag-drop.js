@@ -3,7 +3,7 @@
 var FileHelper = window.FileHelper;
 var CSVParser = window.CSVParser;
 var TransactionWriter = window.TransactionWriter;
-var MasterCardFilter = window.MasterCardFilter;
+var CreditCardFilter = window.CreditCardFilter;
 
 var logger = window.log;
 var dropZone = document.getElementById('drop-zone');
@@ -25,7 +25,7 @@ dropZone.ondrop = function(e) {
       var lines = CSVParser.parse(text);
       var headers = ['date', 'description', 'amount', 'account', 'person'];
       var headersName = {'date':'Date', 'description':'Description', 'amount':'Montant', 'account':'Compte', 'person':'Par'};
-      var output = TransactionWriter.write(MasterCardFilter.filter(lines), headers, headersName);
+      var output = TransactionWriter.write(CreditCardFilter.filter(lines), headers, headersName);
       output = output.replace(/\n/g, "\n<br/>");
       outputZone.innerHTML += output;
       outputZone.innerHTML += '<br/>';

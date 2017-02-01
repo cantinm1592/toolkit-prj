@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 var CSVParser = require('../app/csv-parser.js');
-var MasterCardFilter = require('../app/mastercard-filter.js');
+var CreditCardFilter = require('../app/credit-card-filter.js');
 var TransactionWriter = require('../app/transaction-writer.js');
 
 var path = require('path');
@@ -20,4 +20,4 @@ var lines = CSVParser.parse(buffer);
 var headers = ['date', 'description', 'amount', 'account', 'person'];
 var headersName = {'date':'Date', 'description':'Description', 'amount':'Montant', 'account':'Compte', 'person':'Par'};
 
-process.stdout.write(TransactionWriter.write(MasterCardFilter.filter(lines), headers, headersName));
+process.stdout.write(TransactionWriter.write(CreditCardFilter.filter(lines), headers, headersName));

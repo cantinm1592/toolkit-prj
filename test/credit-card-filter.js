@@ -13,15 +13,15 @@ var logger = require('loglevel-message-prefix')(require('loglevel'), {
 
 var Transaction = require('../app/transaction.js');
 var CSVParser = require('../app/csv-parser.js');
-var MasterCardFilter = require('../app/mastercard-filter.js');
+var CreditCardFilter = require('../app/credit-card-filter.js');
 
 var buffer = fs.readFileSync(path.join(__dirname, 'csv-parser.csv'), "utf8");
 var lines = CSVParser.parse(buffer);
-var transactions = MasterCardFilter.filter(lines);
+var transactions = CreditCardFilter.filter(lines);
 
 logger.setLevel('info');
 
-describe("MasterCardFilter", function() {
+describe("CreditCardFilter", function() {
   
   describe("#filter(lines)", function() {
     
