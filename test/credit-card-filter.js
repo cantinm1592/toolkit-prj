@@ -17,13 +17,14 @@ var CreditCardFilter = require('../app/credit-card-filter.js');
 
 var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
 var lines = CSVParser.parse(buffer);
-var transactions = CreditCardFilter.filter(lines);
+var filter = new CreditCardFilter();
+var transactions = filter.process(lines);
 
 logger.setLevel('info');
 
 describe("CreditCardFilter", function() {
   
-  describe("#filter(lines)", function() {
+  describe("#process(lines)", function() {
     
     it('should return an array of Transaction objects', function() {
       expect(transactions).to.be.an('array');

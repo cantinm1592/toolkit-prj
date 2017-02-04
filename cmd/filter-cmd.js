@@ -20,4 +20,4 @@ var lines = CSVParser.parse(buffer);
 var headers = ['date', 'description', 'amount', 'account', 'person'];
 var headersName = {'date':'Date', 'description':'Description', 'amount':'Montant', 'account':'Compte', 'person':'Par'};
 
-process.stdout.write(TransactionWriter.write(CreditCardFilter.filter(lines), headers, headersName));
+process.stdout.write(TransactionWriter.write(new CreditCardFilter().process(lines), headers, headersName));

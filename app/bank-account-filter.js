@@ -11,9 +11,9 @@
   
   var BankAccountFilter = function(){};
 
-  BankAccountFilter.filter = function filter(lines) {
+  BankAccountFilter.prototype.process = function(lines) {
     
-    logger.debug('BankAccountFilter.parse() : begin');
+    logger.debug('BankAccountFilter.process() : begin');
     
     var transactions = new Array();
     
@@ -30,7 +30,7 @@
       }
     });
     
-    logger.debug('BankAccountFilter.parse() : end');
+    logger.debug('BankAccountFilter.process() : end');
     
     return transactions;
   };

@@ -12,9 +12,9 @@
   
   var CreditCardFilter = function(){};
 
-  CreditCardFilter.filter = function filter(lines) {
+  CreditCardFilter.prototype.process = function(lines) {
     
-    logger.debug('CreditCardFilter.parse() : begin');
+    logger.debug('CreditCardFilter.process() : begin');
     
     var transactions = new Array();
     
@@ -31,7 +31,7 @@
       }
     });
     
-    logger.debug('CreditCardFilter.parse() : end');
+    logger.debug('CreditCardFilter.process() : end');
     
     return transactions;
   };

@@ -17,7 +17,8 @@ var BankAccountFilter = require('../app/bank-account-filter.js');
 
 var buffer = fs.readFileSync(path.join(__dirname, 'eop_20161222.csv'), "utf8");
 var lines = CSVParser.parse(buffer);
-var transactions = BankAccountFilter.filter(lines);
+var filter = new BankAccountFilter();
+var transactions = filter.process(lines);
 
 logger.setLevel('info');
 
@@ -25,7 +26,7 @@ logger.debug("transactions =", transactions);
 
 describe("BankAccountFilter", function() {
   
-  describe("#filter(lines)", function() {
+  describe("#process(lines)", function() {
     
     it('should return an array of Transaction objects', function() {
       expect(transactions).to.be.an('array');

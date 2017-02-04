@@ -26,7 +26,7 @@ describe("TransactionWriter", function() {
   
     var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
     var lines = CSVParser.parse(buffer);
-    var transactions = CreditCardFilter.filter(lines);
+    var transactions = new CreditCardFilter().process(lines);
     var output = TransactionWriter.write(transactions, headers, headersName);
     
     it('should return a string', function() {
