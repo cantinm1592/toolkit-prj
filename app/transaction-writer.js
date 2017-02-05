@@ -1,7 +1,6 @@
 /* eslint-env browser, node */
 (function() {
   
-  var logger = typeof window !== 'undefined' ? window.log : require('loglevel');
   var eol = "\n";
   var delimiter = ";";
   
@@ -11,10 +10,12 @@
     
     var buffer = '';
     
-    headers.forEach(function(header) {
-      buffer += headersName[header];
-      buffer += delimiter;
-    });
+    if(typeof headersName !== 'undefined') {
+      headers.forEach(function(header) {
+        buffer += headersName[header];
+        buffer += delimiter;
+      });
+    }
     
     buffer = buffer.slice(0, -1);
     buffer += eol;

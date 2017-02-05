@@ -23,18 +23,34 @@ logger.setLevel('info');
 describe("TransactionWriter", function() {
   
   describe("#write(transactions, headers, headersName)", function() {
-  
+    
     var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
     var lines = CSVParser.parse(buffer);
     var transactions = new CreditCardFilter().process(lines);
-    var output = TransactionWriter.write(transactions, headers, headersName);
     
-    it('should return a string', function() {
-      expect(output).to.be.a('string');
+    context("when headersName is specified", function() {
+      
+      var output = TransactionWriter.write(transactions, headers, headersName);
+      
+      it('should return a string', function() {
+        expect(output).to.be.a('string');
+      });
+      
+      it('should return a string of "transactions.length + 1" lines', function() {
+        expect(output.split("\n").length).to.equal(transactions.length + 1);
+      });
     });
     
-    it('should return a string of "transactions.length + 1" lines', function() {
-      expect(output.split("\n").length).to.equal(transactions.length + 1);
+    context("when headersName is not specified", function() {
+      var output = TransactionWriter.write(transactions, headers);
+      
+      it('should return a string', function() {
+        expect(output).to.be.a('string');
+      });
+      
+      it('should return a string of "transactions.length" lines', function() {
+        expect(output.split("\n").length).to.equal(transactions.length);
+      });
     });
 
   });

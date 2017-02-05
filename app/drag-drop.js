@@ -2,8 +2,8 @@
 
 var FileHelper = window.FileHelper;
 var CSVParser = window.CSVParser;
+var TransactionFilter = window.TransactionFilter;
 var TransactionWriter = window.TransactionWriter;
-var CreditCardFilter = window.CreditCardFilter;
 
 var logger = window.log;
 var dropZone = document.getElementById('drop-zone');
@@ -24,8 +24,7 @@ dropZone.ondrop = function(e) {
     FileHelper.processAsText(files[i], function(text) {
       var lines = CSVParser.parse(text);
       var headers = ['date', 'description', 'amount', 'account', 'person'];
-      var headersName = {'date':'Date', 'description':'Description', 'amount':'Montant', 'account':'Compte', 'person':'Par'};
-      var output = TransactionWriter.write(new CreditCardFilter().process(lines), headers, headersName);
+      var output = TransactionWriter.write(new TransactionFilter().process(lines), headers);
       output = output.replace(/\n/g, "\n<br/>");
       outputZone.innerHTML += output;
       outputZone.innerHTML += '<br/>';
