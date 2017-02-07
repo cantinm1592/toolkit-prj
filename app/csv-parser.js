@@ -7,7 +7,7 @@
   
   var CSVParser = function(){};
 
-  CSVParser.parse = function parse(buffer) {
+  CSVParser.prototype.parse = function(buffer) {
     
     logger.debug('CSVParser.parse() : begin');
     

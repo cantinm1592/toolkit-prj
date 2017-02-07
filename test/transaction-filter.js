@@ -25,7 +25,7 @@ describe("TransactionFilter", function() {
     context("when passed lines from a credit card CSV", function() {
     
       var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
-      var lines = CSVParser.parse(buffer);
+      var lines = new CSVParser().parse(buffer);
       var transactions = filter.process(lines);
     
       it("should return an array of Transaction objects with account property that equals 'MASTERCARD'", function() {
@@ -42,7 +42,7 @@ describe("TransactionFilter", function() {
     context("when passed lines from a bank account CSV", function() {
       
       var buffer = fs.readFileSync(path.join(__dirname, 'eop_20161222.csv'), "utf8");
-      var lines = CSVParser.parse(buffer);
+      var lines = new CSVParser().parse(buffer);
       var transactions = filter.process(lines);
       
       it("should return an array of Transaction objects with account property that equals 'EOP'", function() {
@@ -59,7 +59,7 @@ describe("TransactionFilter", function() {
     context("when passed lines from a unknown format CSV", function() {
       
       var buffer = fs.readFileSync(path.join(__dirname, 'eop_20161222.csv'), "utf8");
-      var lines = CSVParser.parse(buffer);
+      var lines = new CSVParser().parse(buffer);
       lines[0][0] = "Unknown format first column value";
       
       it("should throw an error", function() {

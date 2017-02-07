@@ -25,12 +25,12 @@ describe("TransactionWriter", function() {
   describe("#write(transactions, headers, headersName)", function() {
     
     var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
-    var lines = CSVParser.parse(buffer);
+    var lines = new CSVParser().parse(buffer);
     var transactions = new CreditCardFilter().process(lines);
     
     context("when headersName is specified", function() {
       
-      var output = TransactionWriter.write(transactions, headers, headersName);
+      var output = new TransactionWriter().write(transactions, headers, headersName);
       
       it('should return a string', function() {
         expect(output).to.be.a('string');
@@ -42,7 +42,7 @@ describe("TransactionWriter", function() {
     });
     
     context("when headersName is not specified", function() {
-      var output = TransactionWriter.write(transactions, headers);
+      var output = new TransactionWriter().write(transactions, headers);
       
       it('should return a string', function() {
         expect(output).to.be.a('string');

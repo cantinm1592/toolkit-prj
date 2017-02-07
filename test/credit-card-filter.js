@@ -16,7 +16,7 @@ var CSVParser = require('../app/csv-parser.js');
 var CreditCardFilter = require('../app/credit-card-filter.js');
 
 var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
-var lines = CSVParser.parse(buffer);
+var lines = new CSVParser().parse(buffer);
 var filter = new CreditCardFilter();
 var transactions = filter.process(lines);
 

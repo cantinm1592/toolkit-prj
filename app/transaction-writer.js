@@ -6,7 +6,7 @@
   
   var TransactionWriter = function(){};
   
-  TransactionWriter.write = function write(transactions, headers, headersName) {
+  TransactionWriter.prototype.write = function(transactions, headers, headersName) {
     
     var buffer = '';
     

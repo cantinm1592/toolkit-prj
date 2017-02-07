@@ -7,7 +7,7 @@
   
   var CSVWriter = function(){};
   
-  CSVWriter.write = function write(lines) {
+  CSVWriter.prototype.write = function(lines) {
     var buffer = "";
     for(var i = 0; i < lines.length; i++) {
       for(var j = 0; j < lines[i].length; j++) {

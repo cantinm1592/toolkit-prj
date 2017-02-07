@@ -20,8 +20,8 @@ describe("CSVWriter", function() {
   
   describe("#write(lines)", function() {
     var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
-    var lines = CSVParser.parse(buffer);
-    var output = CSVWriter.write(lines);
+    var lines = new CSVParser().parse(buffer);
+    var output = new CSVWriter().write(lines);
     
     it('should return a string', function() {
       expect(output).to.be.a('string');

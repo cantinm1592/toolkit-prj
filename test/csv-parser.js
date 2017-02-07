@@ -20,7 +20,7 @@ describe("CSVParser", function() {
   describe("#parse(buffer)", function() {
     
     var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
-    var lines = CSVParser.parse(buffer);
+    var lines = new CSVParser().parse(buffer);
     
     it('should return an array (CSV lines)', function() {
       expect(lines).to.be.an('array');

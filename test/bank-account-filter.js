@@ -16,7 +16,7 @@ var CSVParser = require('../app/csv-parser.js');
 var BankAccountFilter = require('../app/bank-account-filter.js');
 
 var buffer = fs.readFileSync(path.join(__dirname, 'eop_20161222.csv'), "utf8");
-var lines = CSVParser.parse(buffer);
+var lines = new CSVParser().parse(buffer);
 var filter = new BankAccountFilter();
 var transactions = filter.process(lines);
 
