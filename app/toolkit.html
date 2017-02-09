@@ -51,12 +51,39 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h4>
-					<strong>Ouput</strong>
-				</h4>
+			  <div style="display: inline-block">
+  				<h4>
+  					<strong>Output</strong>
+  				</h4>
+				</div>
+				<div style="float: right">
+  				<div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Actions
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Delete</a></li>
+            </ul>
+          </div>
+        </div>
 			</div>
 			<div class="panel-body">
-				<div class="output-zone" id="output-zone"><h4>{...}</h4></div>
+				<table class="table table-condensed">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Account</th>
+              <th>By</th>
+              <th>Budget Item</th>
+            </tr>
+          </thead>
+          <tbody id="output-zone">
+          </tbody>
+        </table>
 			</div>
 		</div>
 	</div>

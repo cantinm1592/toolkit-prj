@@ -7,6 +7,7 @@
   "AVRIL":                 "Épicerie",
   "BABINE GOURMANDE":      "Restaurants",
   "COSTCO":                "Épicerie",
+  "CPE":                   "Garderie",
   "ADONIS":                "Épicerie",
   "BASHA":                 "Lunch",
   "Assurance automobile":  "Assurance-auto",
@@ -42,5 +43,8 @@
   "TEXTURE":               "Texture",
   "ET 2":                  "Réserve annuelle",
   "ET 3":                  "Réserve taxes",
-  "HYDRO-QUEBEC":          "Électricité"
+  "HYDRO-QUEBEC":          "Électricité",
+  "PR 02":                  "Hypothèque"
+
+
 }
