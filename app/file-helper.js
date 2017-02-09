@@ -26,6 +26,23 @@
     reader.readAsText(file);
   };
   
+  FileHelper.parseJSON = function(method, url, processor) {
+    
+    var request = new XMLHttpRequest();
+    
+    request.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+        var jsonObject = JSON.parse(this.responseText);
+        if(processor !== undefined) {
+          processor(jsonObject);
+        }
+      }
+    };
+    
+    request.open(method, url, true);
+    request.send();
+  };  
+  
   window.FileHelper = FileHelper;
   
 })();

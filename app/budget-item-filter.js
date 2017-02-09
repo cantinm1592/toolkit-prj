@@ -2,23 +2,27 @@
 (function() {
   
   var logger = typeof window !== 'undefined' ? window.log : require('loglevel');
-  var budgetItemsByPattern = typeof window !== 'undefined' ? window.budgetItemsByPattern : require('./budget-item-patterns.js');
+
   
-  var BudgetItemFilter = function(){};
+  var BudgetItemFilter = function() {
+    this.budgetItemsByPattern = typeof window !== 'undefined' ? window.budgetItemsByPattern : require('./budget-item-patterns.json');
+  };
   
   BudgetItemFilter.prototype.process = function(transactions) {
     
-    logger.info("budgetItemsByPattern =", budgetItemsByPattern);
-    logger.info("Object.keys(budgetItemsByPattern) =", Object.keys(budgetItemsByPattern));
+    var budgetItemsByPattern = this.budgetItemsByPattern;
+    
+    logger.debug("budgetItemsByPattern =", budgetItemsByPattern);
+    logger.debug("Object.keys(budgetItemsByPattern) =", Object.keys(budgetItemsByPattern));
 
-    var patterns = Object.keys(budgetItemsByPattern);
+    var patterns = Object.keys(this.budgetItemsByPattern);
     
     transactions.forEach(function(transaction){
       for(var i = 0; i < patterns.length; i++) {
-        logger.info("testing pattern '", patterns[i], "' on", transaction.description);
+        logger.debug("testing pattern '", patterns[i], "' on", transaction.description);
         if(transaction.description.includes(patterns[i])) {
           transaction.budgetItem = budgetItemsByPattern[patterns[i]];
-          logger.info("FOUND!");
+          logger.debug("pattern found!");
           break;
         }
       }

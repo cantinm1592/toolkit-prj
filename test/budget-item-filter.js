@@ -13,7 +13,7 @@ var logger = require('loglevel-message-prefix')(require('loglevel'), {
 
 var Transaction = require('../app/transaction.js');
 var CSVParser = require('../app/csv-parser.js');
-var TransactionWriter= require('../app/transaction-writer.js');
+var TransactionWriter = require('../app/transaction-writer.js');
 var TransactionFilter = require('../app/transaction-filter.js');
 var BudgetItemFilter = require('../app/budget-item-filter.js');
 
@@ -29,7 +29,7 @@ describe("BudgetItemFilter", function() {
       transactions = new BudgetItemFilter().process(transactions);
       
       var headers = ['date', 'description', 'amount', 'account', 'person', 'budgetItem'];
-      //logger.info(TransactionWriter.write(transactions, headers));
+      logger.debug(new TransactionWriter().write(transactions, headers));
     
       it("should return an array of Transaction objects", function() {
         expect(transactions).to.be.an('array');

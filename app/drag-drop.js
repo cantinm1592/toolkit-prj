@@ -1,9 +1,17 @@
 /* eslint-env browser */
 
+var budgetItemsByPattern = null;
+
 var FileHelper = window.FileHelper;
 var CSVParser = window.CSVParser;
 var TransactionFilter = window.TransactionFilter;
 var TransactionWriter = window.TransactionWriter;
+var BudgetItemFilter = window.BudgetItemFilter;
+
+FileHelper.parseJSON("GET", "budget-item-patterns.json", function(jsonObject) {
+  budgetItemsByPattern = jsonObject;
+  console.log("budgetItemsByPattern =", budgetItemsByPattern);
+});
 
 var logger = window.log;
 var dropZone = document.getElementById('drop-zone');
@@ -23,8 +31,8 @@ dropZone.ondrop = function(e) {
     logger.info("ondrop() : processing file \'" + files[i].name + "' file");
     FileHelper.processAsText(files[i], function(text) {
       var lines = new CSVParser().parse(text);
-      var headers = ['date', 'description', 'amount', 'account', 'person'];
-      var output = new TransactionWriter().write(new TransactionFilter().process(lines), headers);
+      var headers = ['date', 'description', 'amount', 'account', 'person', 'budgetItem'];
+      var output = new TransactionWriter().write(new BudgetItemFilter().process(new TransactionFilter().process(lines)), headers);
       output = output.replace(/\n/g, "\n<br/>");
       outputZone.innerHTML += output;
       outputZone.innerHTML += '<br/>';
