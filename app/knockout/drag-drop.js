@@ -1,5 +1,8 @@
 /* eslint-env browser */
 
+var Transaction = window.Transaction;
+
+var ko = window.ko;
 var logger = window.log;
 
 var transactions = [];
@@ -11,15 +14,12 @@ transactions.forEach(function(transaction, index, array) {
 });
 
 var tableViewModel = {
-    transactions: transactions,
+    transactions: ko.observableArray(transactions),
     deleteSelected: function() {
       console.log("deleteSelected!");
-      this.transactions.forEach(function(transaction, index, array) {
-        console.log("transaction.selected, index =", transaction.selected, ", ", index);
-        if(transaction.selected) {
-          array.splice(index, 1);
-        }
-      });
+      this.transactions().splice(0, 1);
+      console.log(this.transactions());
+      return false;
     }
 };
 

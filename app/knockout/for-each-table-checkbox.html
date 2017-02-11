@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+</head>
+  
+<body>
+	<div class="container" style="">
+    <h1>Toolkit</h1>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+			  <div style="display: inline-block">
+  				<h4>
+  					<strong>Output</strong>
+  				</h4>
+				</div>
+				<div style="float: right">
+  				<div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Actions
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#" data-bind="click: removePersons">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+			</div>
+			<div class="panel-body">
+				<table class="table table-condensed">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Position</th>
+              <th>Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="output-zone" data-bind="foreach: people">
+            <tr>
+              <td><input type="checkbox" data-bind="checkedValue: $data, checked: $parent.checkedValues"></td>
+              <td data-bind="text: $index"></td>
+              <td data-bind="text: name"></td>
+              <td><a href="#" data-bind="click: $parent.removePerson">Remove</a></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <button data-bind="click: addPerson">Add</button>
+			</div>
+		</div>
+	</div>
+</body>
+</body>
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-min.js"></script>
+
+<script>
+function AppViewModel() {
+    var self = this;
+    
+    self.checkedValues = ko.observableArray();
+ 
+    self.people = ko.observableArray([
+        { name: 'Bert' },
+        { name: 'Charles' },
+        { name: 'Denise' }
+    ]);
+ 
+    self.addPerson = function() {
+        self.people.push({ name: "New at " + new Date() });
+    };
+ 
+    self.removePerson = function() {
+        self.people.remove(this);
+    };
+    
+    self.removePersons = function() {
+        console.log(self.checkedValues());
+        
+        while((personToRemove = self.checkedValues().shift()) !== undefined) { 
+          console.log("removing");
+          self.people.remove(personToRemove);
+        }
+    };
+}
+ 
+ko.applyBindings(new AppViewModel());
+</script>
+</html>
