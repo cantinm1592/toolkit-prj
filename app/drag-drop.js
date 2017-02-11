@@ -3,19 +3,29 @@
 var budgetItemsByPattern = null;
 
 var FileHelper = window.FileHelper;
+var Transaction = window.Transaction;
 var CSVParser = window.CSVParser;
 var TransactionFilter = window.TransactionFilter;
-var TransactionWriter = window.TransactionWriter;
 var BudgetItemFilter = window.BudgetItemFilter;
+var TransactionsViewModel = window.TransactionsViewModel;
 
 FileHelper.parseJSON("GET", "budget-item-patterns.json", function(jsonObject) {
   budgetItemsByPattern = jsonObject;
   console.log("budgetItemsByPattern =", budgetItemsByPattern);
 });
 
+var ko = window.ko;
 var logger = window.log;
 var dropZone = document.getElementById('drop-zone');
 var outputZone = document.getElementById('output-zone');
+
+var transactions = [];
+transactions.push(new Transaction("2017-01-01", "IGA LACOSTE", "25.00", "MASTERCARD", "Maxime", "Épicerie"));
+transactions.push(new Transaction("2017-01-01", "TAIPHON", "17.00", "MASTERCARD", "Maxime", "Lunch"));
+transactions.push(new Transaction("2017-01-01", "RETRAIT AU GA", "100.00", "EOP", "Maxime", "Argent comptant"));
+
+var viewModel = new TransactionsViewModel(transactions);
+ko.applyBindings(viewModel);
 
 dropZone.ondrop = function(e) {
   
@@ -28,48 +38,14 @@ dropZone.ondrop = function(e) {
   
   for(var i = 0; i < files.length; ++i) {
     
-    outputZone.innerHTML = "";
     logger.info("ondrop() : processing file \'" + files[i].name + "' file");
     
     FileHelper.processAsText(files[i], function(text) {
       
       var lines = new CSVParser().parse(text);
-      var transactions = new BudgetItemFilter().process(new TransactionFilter().process(lines));
+      var transactionsToAdd = new BudgetItemFilter().process(new TransactionFilter().process(lines));
       
-      var output = "";
-      
-      transactions.forEach(function(transaction) {
-        output += "<tr class='";
-        output += transaction.budgetItem !== '' ? "" : "danger";
-        output += "'><td>";
-        output += "<input type='checkbox' value=''>"
-        output += "</td><td>";        
-        output += transaction.date;
-        output += "</td><td>";
-        output += transaction.description;
-        output += "</td><td>";
-        output += transaction.amount;
-        output += "</td><td>";
-        output += transaction.account;
-        output += "</td><td>";
-        output += transaction.person;
-        output += "</td><td>";
-        output += transaction.budgetItem;
-        // output += "</td><td>";
-        // output += '<div class="dropdown">';
-        // output += '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-        // output += 'Actions';
-        // output += '<span class="caret"></span>';
-        // output += '</button>';
-        // output += '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
-        // output += '<li><a href="#">Delete</a></li>';
-        // output += '</ul>';
-        // output += '</div>';
-        output += "</td></tr>";
-      });
-      
-      outputZone.innerHTML += output;
-      
+      viewModel.pushAll(transactionsToAdd);
     });
   }
 
@@ -85,4 +61,11 @@ dropZone.ondragleave = function() {
   this.className = 'drop-zone';
   return false;
 };
+
+function deleteSelected() {
+  console.log("Hello world!");
+  viewModel.transactions().splice(0, 1);
+  console.log(viewModel.transactions());
+  return false;
+}
 
