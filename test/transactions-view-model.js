@@ -23,8 +23,8 @@ describe("TransactionsViewModel", function() {
       expect(viewModel).to.be.an('object');
     });
     
-    it('should have a transactions property equals to null', function() {
-      expect(viewModel.transactions).to.be.null;
+    it('should have a transactions property that is empty', function() {
+      expect(viewModel.transactions()).to.have.a.lengthOf(0);
     });
     
   });
@@ -42,8 +42,8 @@ describe("TransactionsViewModel", function() {
       expect(viewModel).to.be.an('object');
     });
     
-    it('should have a transactions property equals to transactions', function() {
-      expect(viewModel.transactions).to.equals(transactions);
+    it('should have a transactions property that have a length of 3', function() {
+      expect(viewModel.transactions()).to.have.a.lengthOf(3);
     });
 
   });

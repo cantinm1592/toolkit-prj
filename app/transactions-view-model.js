@@ -1,7 +1,7 @@
 /* eslint-env browser, node */
 (function() {
   
-  var ko = window.ko;
+  var ko = typeof window !== 'undefined' ? window.ko : require('knockout');
 
   var TransactionsViewModel = function(transactions) {
     
