@@ -2,26 +2,23 @@
 (function() {
   
   var logger = typeof window !== 'undefined' ? window.log : require('loglevel');
-
   
   var BudgetItemFilter = function() {
-    this.budgetItemsByPattern = typeof window !== 'undefined' ? window.budgetItemsByPattern : require('./budget-item-patterns.json');
+    var budgetItemRules = typeof window !== 'undefined' ? window.budgetItemRules : require('./budget-item-rules.json');
+    this.patterns = budgetItemRules.patterns;
   };
   
   BudgetItemFilter.prototype.process = function(transactions) {
     
-    var budgetItemsByPattern = this.budgetItemsByPattern;
+    var patterns = this.patterns;
     
-    logger.debug("budgetItemsByPattern =", budgetItemsByPattern);
-    logger.debug("Object.keys(budgetItemsByPattern) =", Object.keys(budgetItemsByPattern));
+    //logger.info("patterns =", patterns);
 
-    var patterns = Object.keys(this.budgetItemsByPattern);
-    
     transactions.forEach(function(transaction){
       for(var i = 0; i < patterns.length; i++) {
-        logger.debug("testing pattern '", patterns[i], "' on", transaction.description);
-        if(transaction.description.includes(patterns[i])) {
-          transaction.budgetItem = budgetItemsByPattern[patterns[i]];
+        //logger.info("testing pattern '", patterns[i].pattern, "' on", transaction.description);
+        if(transaction.description.includes(patterns[i].pattern)) {
+          transaction.budgetItem = patterns[i].budgetItem;
           logger.debug("pattern found!");
           break;
         }

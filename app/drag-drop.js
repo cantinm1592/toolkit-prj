@@ -1,6 +1,6 @@
 /* eslint-env browser, jquery */';';
 
-var budgetItemsByPattern = null;
+var budgetItemRules = null;
 
 var FileHelper = window.FileHelper;
 var Transaction = window.Transaction;
@@ -9,8 +9,8 @@ var TransactionFilter = window.TransactionFilter;
 var BudgetItemFilter = window.BudgetItemFilter;
 var TransactionsViewModel = window.TransactionsViewModel;
 
-FileHelper.parseJSON("GET", "budget-item-patterns.json", function(jsonObject) {
-  budgetItemsByPattern = jsonObject;
+FileHelper.parseJSON("GET", "budget-item-rules.json", function(jsonObject) {
+  budgetItemRules = jsonObject;
 });
 
 var ko = window.ko;
