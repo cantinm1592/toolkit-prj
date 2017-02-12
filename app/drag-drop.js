@@ -1,4 +1,4 @@
-/* eslint-env browser */';';
+/* eslint-env browser, jquery */';';
 
 var budgetItemsByPattern = null;
 
@@ -11,13 +11,11 @@ var TransactionsViewModel = window.TransactionsViewModel;
 
 FileHelper.parseJSON("GET", "budget-item-patterns.json", function(jsonObject) {
   budgetItemsByPattern = jsonObject;
-  console.log("budgetItemsByPattern =", budgetItemsByPattern);
 });
 
 var ko = window.ko;
 var logger = window.log;
 var dropZone = document.getElementById('drop-zone');
-var outputZone = document.getElementById('output-zone');
 
 var transactions = [];
 transactions.push(new Transaction("2017-01-01", "IGA LACOSTE", "25.00", "MASTERCARD", "Maxime", "Épicerie"));
@@ -48,6 +46,8 @@ dropZone.ondrop = function(e) {
       viewModel.pushAll(transactionsToAdd);
     });
   }
+  
+  $('#transactions-nav').click();
 
   logger.debug("ondrop() : end");
 };
@@ -61,11 +61,3 @@ dropZone.ondragleave = function() {
   this.className = 'drop-zone';
   return false;
 };
-
-function deleteSelected() {
-  console.log("Hello world!");
-  viewModel.transactions().splice(0, 1);
-  console.log(viewModel.transactions());
-  return false;
-}
-
