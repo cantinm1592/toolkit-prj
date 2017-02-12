@@ -64,7 +64,11 @@
   				</h4>
 				</div>
 				<div style="float: right">
-  				<div class="dropdown">
+  			  <div style="display: inline-block">
+  			   <button class="btn btn-primary" type="button"><span data-bind="text: transactions().length"></span> transactions</button>
+   			   <button class="btn btn-danger" type="button"><span data-bind="text: uncategorizedCount"></span> uncategorized</button>
+  			  </div>
+  				<div class="dropdown" style="display: inline-block">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               Actions
               <span class="caret"></span>
@@ -89,7 +93,7 @@
             </tr>
           </thead>
           <tbody id="output-zone" data-bind="foreach: transactions">
-            <tr>
+            <tr data-bind="css: { danger: budgetItem == '' }">
               <td><input type="checkbox" data-bind="checkedValue: $data, checked: $parent.selectedTransactions"></td>
               <td data-bind="text: date"></td>
               <td data-bind="text: description"></td>

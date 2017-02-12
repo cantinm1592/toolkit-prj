@@ -43,7 +43,7 @@ dropZone.ondrop = function(e) {
       var lines = new CSVParser().parse(text);
       var transactionsToAdd = new BudgetItemFilter().process(new TransactionFilter().process(lines));
       
-      viewModel.pushAll(transactionsToAdd);
+      viewModel.addTransactions(transactionsToAdd);
     });
   }
   

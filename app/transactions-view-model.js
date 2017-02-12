@@ -7,12 +7,24 @@
     
     this.selectedTransactions = ko.observableArray();
     this.transactions = ko.observableArray(transactions !== undefined ? transactions : null);
+    
+    this.uncategorizedCount = ko.computed(function() {
+      var count = 0;
+      for(var i = 0; i < this.transactions().length; i++) {
+        if(this.transactions()[i].budgetItem === '') {
+          count++;
+        }
+      }
+      return count;
+    }, this);
   };
   
-  TransactionsViewModel.prototype.pushAll = function(transactions) {
+  TransactionsViewModel.prototype.addTransactions = function(transactions) {
     for(var i = 0; i < transactions.length; i++) {
       this.transactions.push(transactions[i]);
     }
+    
+    //this.uncategorizedCount();
   };
   
   TransactionsViewModel.prototype.removeTransactions = function() {
