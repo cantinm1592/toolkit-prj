@@ -1,29 +1,33 @@
 /* eslint-env browser, jquery */';';
 
-var budgetItemRules = null;
-
 var FileHelper = window.FileHelper;
 var Transaction = window.Transaction;
 var CSVParser = window.CSVParser;
 var TransactionFilter = window.TransactionFilter;
 var BudgetItemFilter = window.BudgetItemFilter;
 var TransactionsViewModel = window.TransactionsViewModel;
-
-FileHelper.parseJSON("GET", "budget-item-rules.json", function(jsonObject) {
-  budgetItemRules = jsonObject;
-});
+var PatternsViewModel = window.PatternsViewModel;
 
 var ko = window.ko;
 var logger = window.log;
-var dropZone = document.getElementById('drop-zone');
+var budgetItemRules = null;
+var transactionsViewModel = null;
+var patternsViewModel = null;
+
+FileHelper.parseJSON("GET", "budget-item-rules.json", function(jsonObject) {
+  budgetItemRules = jsonObject;
+  patternsViewModel = new PatternsViewModel(budgetItemRules.patterns);
+  ko.applyBindings(patternsViewModel, document.getElementById("patterns-panel"));
+});
 
 var transactions = [];
 transactions.push(new Transaction("2017-01-01", "IGA LACOSTE", "25.00", "MASTERCARD", "Maxime", "Épicerie"));
 transactions.push(new Transaction("2017-01-01", "TAIPHON", "17.00", "MASTERCARD", "Maxime", "Lunch"));
 transactions.push(new Transaction("2017-01-01", "RETRAIT AU GA", "100.00", "EOP", "Maxime", "Argent comptant"));
+transactionsViewModel = new TransactionsViewModel(transactions);
+ko.applyBindings(transactionsViewModel, document.getElementById("transactions-panel"));
 
-var viewModel = new TransactionsViewModel(transactions);
-ko.applyBindings(viewModel);
+var dropZone = document.getElementById('drop-zone');
 
 dropZone.ondrop = function(e) {
   
@@ -43,7 +47,7 @@ dropZone.ondrop = function(e) {
       var lines = new CSVParser().parse(text);
       var transactionsToAdd = new BudgetItemFilter().process(new TransactionFilter().process(lines));
       
-      viewModel.addTransactions(transactionsToAdd);
+      transactionsViewModel.addTransactions(transactionsToAdd);
     });
   }
   

@@ -92,7 +92,7 @@
               <th>Budget Item</th>
             </tr>
           </thead>
-          <tbody id="output-zone" data-bind="foreach: transactions">
+          <tbody data-bind="foreach: transactions">
             <tr data-bind="css: { danger: budgetItem == '' }">
               <td><input type="checkbox" data-bind="checkedValue: $data, checked: $parent.selectedTransactions"></td>
               <td data-bind="text: date"></td>
@@ -106,6 +106,33 @@
         </table>
 			</div>
 		</div>
+		<div id="patterns-panel" class="panel panel-default" style="display: none">
+			<div class="panel-heading">
+			  <div style="display: inline-block">
+  				<h4>
+  					<strong>Patterns</strong>
+  				</h4>
+				</div>
+			</div>
+			<div class="panel-body">
+				<table class="table table-condensed">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Pattern</th>
+              <th>Budget Item</th>
+            </tr>
+          </thead>
+          <tbody data-bind="foreach: patterns">
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>"<span data-bind="text: pattern" style="white-space:PRE"></span>"</td>
+              <td data-bind="text: budgetItem"></td>
+            </tr>
+          </tbody>
+        </table>
+			</div>
+		</div>		
 	</div>
 </body>
 
@@ -124,6 +151,7 @@
 <script src="transaction-writer.js"></script>
 <script src="budget-item-filter.js"></script>
 <script src="transactions-view-model.js"></script>
+<script src="patterns-view-model.js"></script>
 <script src="nav-bar.js"></script>
 <script src="drag-drop.js"></script>
 
