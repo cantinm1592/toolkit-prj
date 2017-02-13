@@ -67,6 +67,7 @@
   			  <div style="display: inline-block">
   			   <button class="btn btn-primary" type="button"><span data-bind="text: transactions().length"></span> transactions</button>
    			   <button class="btn btn-danger" type="button"><span data-bind="text: uncategorizedCount"></span> uncategorized</button>
+   			   <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pattern-modal">New pattern</button>
   			  </div>
   				<div class="dropdown" style="display: inline-block">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -113,6 +114,9 @@
   					<strong>Patterns</strong>
   				</h4>
 				</div>
+				<div style="float: right">
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pattern-modal">New</button>
+        </div>				
 			</div>
 			<div class="panel-body">
 				<table class="table table-condensed">
@@ -134,6 +138,36 @@
 			</div>
 		</div>		
 	</div>
+	
+  <!-- Add Patterns Modal -->
+  <div id="pattern-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Pattern</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="pattern">Pattern :</label>
+              <input type="text" class="form-control" id="pattern">
+            </div>
+            <div class="form-group">
+              <label for="budgetItem">Budget Item :</label>
+              <input type="text" class="form-control" id="budgetItem">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="create-button" type="button" class="btn btn-default" data-dismiss="modal">Create</button>
+          <button id="cancel-button" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	
 </body>
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>

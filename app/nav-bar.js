@@ -12,3 +12,24 @@ $(".nav a").on('click',function(e) {
   $('.nav li').removeClass('active');
   $(this).parent().addClass('active');
 });
+
+$("#pattern-modal").on("shown.bs.modal", function() {
+  $("#pattern").focus();
+});
+
+$('#pattern-modal .modal-footer button').on('click', function(e) {
+  
+  var $button = $(e.target);
+  
+  $(this).closest('.modal').one('hidden.bs.modal', function() {
+    
+    if($button.attr('id') === 'create-button') {
+      window.patternsViewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
+    }
+    
+    $("#pattern").val("");
+    $("#budgetItem").val("");
+    $(".btn").blur();
+  });
+  
+});
