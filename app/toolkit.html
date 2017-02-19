@@ -25,12 +25,18 @@
 	color: #222;
 	border-color: #222;
 }
+
 </style>
 
 </head>
 
 <body>
 	<div class="container">
+
+  	<!-- =========================================================================================== -->
+    <!-- == NAVBARS ================================================================================ -->
+  	<!-- =========================================================================================== -->
+
     <nav class="navbar navbar-default" style="margin-top: 10px">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -43,6 +49,11 @@
         </ul>
       </div>
     </nav>
+    
+  	<!-- =========================================================================================== -->
+    <!-- == PANEL : INPUT ========================================================================== -->
+  	<!-- =========================================================================================== -->
+    
 		<div id="input-panel" class="panel panel-default" style="margin-top: 20px">
 		  <div class="panel-heading">
 			  <div style="display: inline-block">
@@ -56,6 +67,11 @@
 				<div id="drop-zone" class="drop-zone">Just drag and drop files here</div>
 			</div>
 		</div>
+		
+  	<!-- =========================================================================================== -->
+    <!-- == PANEL : TRANSACTIONS =================================================================== -->
+  	<!-- =========================================================================================== -->
+		
 		<div id="transactions-panel" class="panel panel-default" style="display: none">
 			<div class="panel-heading">
 			  <div style="display: inline-block">
@@ -67,7 +83,7 @@
   			  <div style="display: inline-block">
   			   <button class="btn btn-primary" type="button"><span data-bind="text: transactions().length"></span> transactions</button>
    			   <button class="btn btn-danger" type="button"><span data-bind="text: uncategorizedCount"></span> uncategorized</button>
-   			   <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pattern-modal">New pattern</button>
+   			   <button class="btn btn-default" type="button" data-toggle="modal" data-target="#new-pattern-modal">New pattern</button>
    			   <button class="btn btn-default" type="button" data-bind="click: applyPatterns">Apply patterns</button>
   			  </div>
   				<div class="dropdown" style="display: inline-block">
@@ -108,6 +124,11 @@
         </table>
 			</div>
 		</div>
+		
+  	<!-- =========================================================================================== -->
+    <!-- == PANEL : PATTERNS ======================================================================= -->
+  	<!-- =========================================================================================== -->
+		
 		<div id="patterns-panel" class="panel panel-default" style="display: none">
 			<div class="panel-heading">
 			  <div style="display: inline-block">
@@ -116,7 +137,8 @@
   				</h4>
 				</div>
 				<div style="float: right">
-          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#pattern-modal">New</button>
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#new-pattern-modal">New</button>
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#export-patterns-modal">Export</button>
         </div>				
 			</div>
 			<div class="panel-body">
@@ -140,8 +162,11 @@
 		</div>		
 	</div>
 	
-  <!-- Add Patterns Modal -->
-  <div id="pattern-modal" class="modal fade" role="dialog">
+	<!-- =========================================================================================== -->
+  <!-- == MODAL : ADD PATTERN ==================================================================== -->
+	<!-- =========================================================================================== -->
+	
+  <div id="new-pattern-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -168,8 +193,39 @@
       
     </div>
   </div>
+  
+	<!-- =========================================================================================== -->
+  <!-- == MODAL : EXPORT PATTERNS ================================================================ -->
+	<!-- =========================================================================================== -->
+  
+  <div id="export-patterns-modal" class="modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Export Patterns</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <textarea id="patterns-json" class="form-control" rows="20"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel-button" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 	
 </body>
+
+<!-- =========================================================================================== -->
+<!-- == SCRIPTS ================================================================================ -->
+<!-- =========================================================================================== -->
+
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

@@ -1,5 +1,7 @@
 /* eslint-env browser, jquery */
 
+var ko = window.ko;
+
 $(".nav a").on('click',function(e) {
   
   e.preventDefault();
@@ -13,11 +15,11 @@ $(".nav a").on('click',function(e) {
   $(this).parent().addClass('active');
 });
 
-$("#pattern-modal").on("shown.bs.modal", function() {
+$("#new-pattern-modal").on("shown.bs.modal", function() {
   $("#pattern").focus();
 });
 
-$('#pattern-modal .modal-footer button').on('click', function(e) {
+$('#new-pattern-modal .modal-footer button').on('click', function(e) {
   
   var $button = $(e.target);
   
@@ -32,4 +34,8 @@ $('#pattern-modal .modal-footer button').on('click', function(e) {
     $(".btn").blur();
   });
   
+});
+
+$("#export-patterns-modal").on("shown.bs.modal", function() {
+  $("#patterns-json").val(JSON.stringify(ko.toJS(window.transactionsViewModel.patterns()),null, 2));
 });
