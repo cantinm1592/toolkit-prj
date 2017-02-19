@@ -24,7 +24,7 @@ $('#pattern-modal .modal-footer button').on('click', function(e) {
   $(this).closest('.modal').one('hidden.bs.modal', function() {
     
     if($button.attr('id') === 'create-button') {
-      window.patternsViewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
+      window.transactionsViewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
     }
     
     $("#pattern").val("");

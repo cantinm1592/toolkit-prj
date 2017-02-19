@@ -12,8 +12,6 @@
     
     var patterns = this.patterns;
     
-    //logger.info("patterns =", patterns);
-
     transactions.forEach(function(transaction){
       for(var i = 0; i < patterns.length; i++) {
         //logger.info("testing pattern '", patterns[i].pattern, "' on", transaction.description);
