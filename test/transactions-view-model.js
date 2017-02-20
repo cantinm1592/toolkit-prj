@@ -56,29 +56,64 @@ describe("TransactionsViewModel", function() {
   
   describe("#applyPattern()", function() {
     
-    var patterns = require('../app/patterns.json');
-    var viewModel = new TransactionsViewModel([], patterns);
-    
-    var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
-    var lines = new CSVParser().parse(buffer);
-    var transactions = new TransactionFilter().process(lines);
-    
-    transactions.forEach(function(transaction) {
-      viewModel.addTransaction(TransactionViewModel.createFromTransaction(transaction));
+    context("when the pattern is : pattern='PATTERN', amount='*'", function() {
+      
+      it("shoud set the budgetItem of transactions that have a description that matches the pattern", function() {
+        
+        var patterns = [{"pattern": "IGA", "amount": "*", "budgetItem": "Épicerie"}];
+        var viewModel = new TransactionsViewModel([], patterns);
+        
+        var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
+        var lines = new CSVParser().parse(buffer);
+        var transactions = new TransactionFilter().process(lines);
+        
+        transactions.forEach(function(transaction) {
+          viewModel.addTransaction(TransactionViewModel.createFromTransaction(transaction));
+        });
+        
+        viewModel.applyPatterns();
+        
+        var budgetItemFound = 0;
+        ko.utils.arrayForEach(viewModel.transactions(), function(transaction) {
+          //console.log(transaction.budgetItem());
+          if(transaction.budgetItem() === 'Épicerie') {
+            budgetItemFound++;
+          }
+        });
+        
+        expect(budgetItemFound).to.equal(6);
+      });
     });
     
-    
-    viewModel.applyPatterns();
-    
-    it("should return at least one TransactionViewModel object with a non-empty budgetItem property", function() {
-      var budgetItemNonEmpty = 0;
-      ko.utils.arrayForEach(viewModel.transactions(), function(transaction) {
-        //console.log(transaction.budgetItem());
-        if(transaction.budgetItem() !== '') {
-          budgetItemNonEmpty++;
-        }
+    context("when the pattern is : pattern='PATTERN', amount='9,99'", function() {
+      
+      it("shoud set the budgetItem of transactions that have a description that matches the pattern and that have the exact amount", function() {
+        
+        var patterns = [{"pattern": "ITUNES", "amount": "1,48", "budgetItem": "iCloud Storage"}];
+        var viewModel = new TransactionsViewModel([], patterns);
+        
+        var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
+        var lines = new CSVParser().parse(buffer);
+        var transactions = new TransactionFilter().process(lines);
+        
+        transactions.forEach(function(transaction) {
+          viewModel.addTransaction(TransactionViewModel.createFromTransaction(transaction));
+        });
+        
+        viewModel.applyPatterns();
+        
+        var budgetItemFound = 0;
+        ko.utils.arrayForEach(viewModel.transactions(), function(transaction) {
+          //console.log(transaction.budgetItem());
+          if(transaction.budgetItem() === 'iCloud Storage') {
+            budgetItemFound++;
+          }
+        });
+        
+        expect(budgetItemFound).to.equal(2);
       });
-      expect(budgetItemNonEmpty).to.be.above(0);
-    });      
+    });
+
   });
+    
 });

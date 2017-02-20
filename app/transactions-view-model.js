@@ -44,7 +44,11 @@
       for(var i = 0; i < patterns.length; i++) {
         //logger.info("testing pattern '", patterns[i].pattern, "' on", transaction.description);
         if(transaction.description().includes(patterns[i].pattern)) {
-          transaction.budgetItem(patterns[i].budgetItem);
+          var patternAmount = patterns[i].amount;
+          //console.log("patternAmount =", patternAmount);
+          if(patternAmount === undefined || patternAmount === '' || patternAmount === '*' || transaction.amount() === patternAmount) {
+            transaction.budgetItem(patterns[i].budgetItem);
+          }
           //console.log("pattern found!");
           break;
         }
