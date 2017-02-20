@@ -38,7 +38,6 @@
   };
   
   TransactionsViewModel.prototype.applyPatterns = function() {
-    console.log("applyPatterns!");
     
     var patterns = this.patterns();
     ko.utils.arrayForEach(this.transactions(), function(transaction){
@@ -46,7 +45,7 @@
         //logger.info("testing pattern '", patterns[i].pattern, "' on", transaction.description);
         if(transaction.description().includes(patterns[i].pattern)) {
           transaction.budgetItem(patterns[i].budgetItem);
-          console.log("pattern found!");
+          //console.log("pattern found!");
           break;
         }
       }
