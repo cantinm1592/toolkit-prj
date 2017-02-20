@@ -15,8 +15,36 @@ $(".nav a").on('click',function(e) {
   $(this).parent().addClass('active');
 });
 
+$(document).keydown(function(e) {
+  
+  if(e.keyCode === 13 || e.keyCode === 78) {
+    
+    var newPatternModalVisible = $('#new-pattern-modal').is(':visible');
+    
+    if(newPatternModalVisible && e.keyCode === 13) {
+      e.preventDefault();
+      window.transactionsViewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
+      $("#pattern").val("");
+      $("#budgetItem").val("");
+      $('#new-pattern-modal').modal('hide');
+    }
+    else if(!newPatternModalVisible && e.keyCode === 78) {
+      e.preventDefault();
+      if (window.getSelection) {
+        $("#pattern").val(window.getSelection().toString());
+      }
+      $('#new-pattern-modal').modal('show');
+    }
+  }
+});
+
 $("#new-pattern-modal").on("shown.bs.modal", function() {
-  $("#pattern").focus();
+  if($("#pattern").val() === '') {
+    $("#pattern").focus();
+  }
+  else {
+    $("#budgetItem").focus();
+  }
 });
 
 $('#new-pattern-modal .modal-footer button').on('click', function(e) {

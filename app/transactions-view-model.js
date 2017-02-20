@@ -34,6 +34,7 @@
   
   TransactionsViewModel.prototype.addPattern = function(pattern, budgetItem) {
     this.patterns.unshift({"pattern": pattern, "budgetItem": budgetItem});
+    this.applyPatterns();
   };
   
   TransactionsViewModel.prototype.applyPatterns = function() {

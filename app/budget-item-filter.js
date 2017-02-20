@@ -4,8 +4,7 @@
   var logger = typeof window !== 'undefined' ? window.log : require('loglevel');
   
   var BudgetItemFilter = function() {
-    var budgetItemRules = typeof window !== 'undefined' ? window.budgetItemRules : require('./budget-item-rules.json');
-    this.patterns = budgetItemRules.patterns;
+    this.patterns = typeof window !== 'undefined' ? window.patterns : require('./patterns.json');
   };
   
   BudgetItemFilter.prototype.process = function(transactions) {

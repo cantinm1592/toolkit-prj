@@ -8,17 +8,19 @@ var TransactionsViewModel = window.TransactionsViewModel;
 
 var ko = window.ko;
 var logger = window.log;
-var budgetItemRules = null;
+var patterns = null;
 var transactionsViewModel = null;
 
 var initialTransactions = [];
+/*
 initialTransactions.push(new TransactionViewModel("2017-01-01", "IGA LACOSTE", "25.00", "MASTERCARD", "Maxime", "Épicerie"));
 initialTransactions.push(new TransactionViewModel("2017-01-01", "TAIPHON", "17.00", "MASTERCARD", "Maxime", "Lunch"));
 initialTransactions.push(new TransactionViewModel("2017-01-01", "RETRAIT AU GA", "100.00", "EOP", "Maxime", "Argent comptant"));
+*/
 
-FileHelper.parseJSON("GET", "budget-item-rules.json", function(jsonObject) {
-  budgetItemRules = jsonObject;
-  transactionsViewModel = new TransactionsViewModel(initialTransactions, budgetItemRules.patterns);
+FileHelper.parseJSON("GET", "patterns.json", function(jsonObject) {
+  patterns = jsonObject;
+  transactionsViewModel = new TransactionsViewModel(initialTransactions, patterns);
   ko.applyBindings(transactionsViewModel);
 });
 

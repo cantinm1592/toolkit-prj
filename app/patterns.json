@@ -1,0 +1,206 @@
+[
+  {
+    "pattern": "WILLIAM J WALTER",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "A&W",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "pattern": "ALFA",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "pattern": "AQUANIMO",
+    "budgetItem": "Animaux"
+  },
+  {
+    "pattern": "ATTI",
+    "budgetItem": "Lunch"
+  },
+  {
+    "pattern": "AUBAINERIE",
+    "budgetItem": "Vetements"
+  },
+  {
+    "pattern": "AVRIL",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "BABINE GOURMANDE",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "pattern": "COSTCO",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "CPE",
+    "budgetItem": "Garderie"
+  },
+  {
+    "pattern": "ADONIS",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "BASHA",
+    "budgetItem": "Lunch"
+  },
+  {
+    "pattern": "Assurance automobile",
+    "budgetItem": "Assurance-auto"
+  },
+  {
+    "pattern": "Assurance biens",
+    "budgetItem": "Assurance-habitation"
+  },
+  {
+    "pattern": "Assurance vie",
+    "budgetItem": "Assurance-vie"
+  },
+  {
+    "pattern": "BELL",
+    "budgetItem": "Télécommunications"
+  },
+  {
+    "pattern": "BILLETTERIE",
+    "budgetItem": "Transports collectifs "
+  },
+  {
+    "pattern": "HOUTTE",
+    "budgetItem": "Cafés"
+  },
+  {
+    "pattern": "CAFE DEPOT",
+    "budgetItem": "Cafés"
+  },
+  {
+    "pattern": "CAFE HUMBLE LION",
+    "budgetItem": "Cafés"
+  },
+  {
+    "pattern": "CSMV SDG",
+    "budgetItem": "Service de garde"
+  },
+  {
+    "pattern": "ET 2",
+    "budgetItem": "Réserve annuelle"
+  },
+  {
+    "pattern": "ET 3",
+    "budgetItem": "Réserve taxes"
+  },
+  {
+    "pattern": "Frais fixes d'utilisation",
+    "budgetItem": "Frais bancaires"
+  },
+  {
+    "pattern": "IGA",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "IMPARK",
+    "budgetItem": "Stationnement"
+  },
+  {
+    "pattern": "JAVA-U",
+    "budgetItem": "Cafés"
+  },
+  {
+    "pattern": "JEAN COUTU",
+    "budgetItem": "Pharmarcie"
+  },
+  {
+    "pattern": "MAXI",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "MCDO",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "pattern": "METRO ",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "MICROSOFT",
+    "budgetItem": "Office 365"
+  },
+  {
+    "pattern": "NARCISSE",
+    "budgetItem": "Coiffeuse"
+  },
+  {
+    "pattern": "NAGOYA",
+    "budgetItem": "Lunch"
+  },
+  {
+    "pattern": "NETFLIX",
+    "budgetItem": "Netflix"
+  },
+  {
+    "pattern": "LUFA",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "OZEN",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "pattern": "MOISSON",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "PRECISE PARK",
+    "budgetItem": "Stationnements"
+  },
+  {
+    "pattern": "PROVIGO",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "THAIPHON",
+    "budgetItem": "Lunch"
+  },
+  {
+    "pattern": "Retrait au GA",
+    "budgetItem": "Argent comptant"
+  },
+  {
+    "pattern": "SAQ",
+    "budgetItem": "Alcools"
+  },
+  {
+    "pattern": "STARBUCKS",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "pattern": "STATIONNEMENT",
+    "budgetItem": "Stationnements"
+  },
+  {
+    "pattern": "STM",
+    "budgetItem": "Transports collectifs"
+  },
+  {
+    "pattern": "SUPER C",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "pattern": "TEXTURE",
+    "budgetItem": "Texture"
+  },
+  {
+    "pattern": "UNIVERSITE DE SHERB",
+    "budgetItem": "Stationnements"
+  },
+  {
+    "pattern": "HYDRO-QUEBEC",
+    "budgetItem": "Électricité"
+  },
+  {
+    "pattern": "PR 02",
+    "budgetItem": "Hypothèque"
+  }
+]
