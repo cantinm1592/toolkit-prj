@@ -67,3 +67,7 @@ $('#new-pattern-modal .modal-footer button').on('click', function(e) {
 $("#export-patterns-modal").on("shown.bs.modal", function() {
   $("#patterns-json").val(JSON.stringify(ko.toJS(window.transactionsViewModel.patterns()),null, 2));
 });
+
+$('.btn').on('click', function() {
+  $(".btn").blur();
+});

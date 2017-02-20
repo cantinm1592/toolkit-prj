@@ -54,7 +54,7 @@ describe("TransactionsViewModel", function() {
 
   });
   
-  describe("#applyPattern()", function() {
+  describe("#applyPatterns()", function() {
     
     context("when the pattern is : pattern='PATTERN', amount='*'", function() {
       
@@ -114,6 +114,30 @@ describe("TransactionsViewModel", function() {
       });
     });
 
+    describe("#sortPatterns()", function() {
+      
+      var patterns = [ { "pattern": "VALENTINE", "amount": "*", "budgetItem": "Restaurants" },
+                       { "pattern": "ITUNES", "amount": "14,99", "budgetItem": "Apple Music" },
+                       { "pattern": "ITUNES", "amount": "1,48", "budgetItem": "iCloud Storage" },
+                       { "pattern": "PROVIGO", "amount": "*", "budgetItem": "Épicerie" } ];
+                       
+      var viewModel = new TransactionsViewModel([], patterns);
+      viewModel.sortPatterns();
+      
+      it("should return the patterns sorted by 'pattern' property, then by 'amount' property", function() {
+        expect(viewModel.patterns()[0].pattern()).to.equal("ITUNES");
+        expect(viewModel.patterns()[0].amount()).to.equal("1,48");
+        
+        expect(viewModel.patterns()[1].pattern()).to.equal("ITUNES");
+        expect(viewModel.patterns()[1].amount()).to.equal("14,99");
+        
+        expect(viewModel.patterns()[2].pattern()).to.equal("PROVIGO");
+        expect(viewModel.patterns()[3].pattern()).to.equal("VALENTINE");
+      });
+                       
+    });
+
   });
+  
     
 });
