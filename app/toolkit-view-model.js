@@ -4,7 +4,7 @@
   var PatternViewModel = typeof window !== 'undefined' ? window.PatternViewModel : require("./pattern-view-model.js");
   var ko = typeof window !== 'undefined' ? window.ko : require('knockout');
 
-  var TransactionsViewModel = function(transactions, patterns) {
+  var ToolkitViewModel = function(transactions, patterns) {
     
     this.selectedTransactions = ko.observableArray();
     this.transactions = ko.observableArray(transactions !== undefined ? transactions : null);
@@ -28,11 +28,11 @@
     }, this);
   };
   
-  TransactionsViewModel.prototype.addTransaction = function(transaction) {
+  ToolkitViewModel.prototype.addTransaction = function(transaction) {
     this.transactions.push(transaction);
   };
   
-  TransactionsViewModel.prototype.removeTransactions = function() {
+  ToolkitViewModel.prototype.removeTransactions = function() {
     var transaction = null;
     while((transaction = this.selectedTransactions().shift()) !== undefined) { 
       console.log("removing");
@@ -40,12 +40,12 @@
     }
   };
   
-  TransactionsViewModel.prototype.addPattern = function(pattern, budgetItem) {
-    this.patterns.unshift({"pattern": pattern, "budgetItem": budgetItem});
+  ToolkitViewModel.prototype.addPattern = function(pattern, budgetItem) {
+    this.patterns.unshift(new PatternViewModel(pattern, budgetItem));
     this.applyPatterns();
   };
   
-  TransactionsViewModel.prototype.applyPatterns = function() {
+  ToolkitViewModel.prototype.applyPatterns = function() {
     var patterns = this.patterns();
     ko.utils.arrayForEach(this.transactions(), function(transaction){
       for(var i = 0; i < patterns.length; i++) {
@@ -60,7 +60,7 @@
     });
   };
   
-  TransactionsViewModel.prototype.sortPatterns = function() {
+  ToolkitViewModel.prototype.sortPatterns = function() {
     this.patterns.sort(function(left, right) {
       if(left.pattern() === right.pattern()) {
         return left.amount() === right.amount() ? 0 : left.amount() < right.amount() ? -1 : 1;
@@ -70,7 +70,7 @@
   };
 
   if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
-    module.exports = TransactionsViewModel;
+    module.exports = ToolkitViewModel;
   else
-    window.TransactionsViewModel = TransactionsViewModel;
+    window.ToolkitViewModel = ToolkitViewModel;
 })();

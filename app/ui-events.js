@@ -23,7 +23,7 @@ $(document).keydown(function(e) {
     
     if(newPatternModalVisible && e.keyCode === 13) {
       e.preventDefault();
-      window.transactionsViewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
+      window.viewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
       $("#pattern").val("");
       $("#budgetItem").val("");
       $('#new-pattern-modal').modal('hide');
@@ -54,7 +54,7 @@ $('#new-pattern-modal .modal-footer button').on('click', function(e) {
   $(this).closest('.modal').one('hidden.bs.modal', function() {
     
     if($button.attr('id') === 'create-button') {
-      window.transactionsViewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
+      window.viewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
     }
     
     $("#pattern").val("");
@@ -65,7 +65,7 @@ $('#new-pattern-modal .modal-footer button').on('click', function(e) {
 });
 
 $("#export-patterns-modal").on("shown.bs.modal", function() {
-  $("#patterns-json").val(JSON.stringify(ko.toJS(window.transactionsViewModel.patterns()),null, 2));
+  $("#patterns-json").val(JSON.stringify(ko.toJS(window.viewModel.patterns()),null, 2));
 });
 
 $('.btn').on('click', function() {

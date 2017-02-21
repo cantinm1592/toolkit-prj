@@ -17,13 +17,13 @@ logger.setLevel('info');
 var CSVParser = require('../app/csv-parser.js');
 var TransactionFilter = require('../app/transaction-filter.js');
 var TransactionViewModel = require('../app/transaction-view-model.js');
-var TransactionsViewModel = require('../app/transactions-view-model.js');
+var ToolkitViewModel = require('../app/toolkit-view-model.js');
 
-describe("TransactionsViewModel", function() {
+describe("ToolkitViewModel", function() {
 
   describe("#empty constructor", function() {
     
-    var viewModel = new TransactionsViewModel();
+    var viewModel = new ToolkitViewModel();
     
     it('return an object', function() {
       expect(viewModel).to.be.an('object');
@@ -42,7 +42,7 @@ describe("TransactionsViewModel", function() {
     transactions.push(new TransactionViewModel("2017-01-01", "TAIPHON", "17.00", "MASTERCARD", "Maxime", "Lunch"));
     transactions.push(new TransactionViewModel("2017-01-01", "RETRAIT AU GA", "100.00", "EOP", "Maxime", "Argent comptant"));
 
-    var viewModel = new TransactionsViewModel(transactions);
+    var viewModel = new ToolkitViewModel(transactions);
     
     it('return an object', function() {
       expect(viewModel).to.be.an('object');
@@ -61,7 +61,7 @@ describe("TransactionsViewModel", function() {
       it("shoud set the budgetItem of transactions that have a description that matches the pattern", function() {
         
         var patterns = [{"pattern": "IGA", "amount": "*", "budgetItem": "Épicerie"}];
-        var viewModel = new TransactionsViewModel([], patterns);
+        var viewModel = new ToolkitViewModel([], patterns);
         
         var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
         var lines = new CSVParser().parse(buffer);
@@ -90,7 +90,7 @@ describe("TransactionsViewModel", function() {
       it("shoud set the budgetItem of transactions that have a description that matches the pattern and that have the exact amount", function() {
         
         var patterns = [{"pattern": "ITUNES", "amount": "1,48", "budgetItem": "iCloud Storage"}];
-        var viewModel = new TransactionsViewModel([], patterns);
+        var viewModel = new ToolkitViewModel([], patterns);
         
         var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
         var lines = new CSVParser().parse(buffer);
@@ -121,7 +121,7 @@ describe("TransactionsViewModel", function() {
                        { "pattern": "ITUNES", "amount": "1,48", "budgetItem": "iCloud Storage" },
                        { "pattern": "PROVIGO", "amount": "*", "budgetItem": "Épicerie" } ];
                        
-      var viewModel = new TransactionsViewModel([], patterns);
+      var viewModel = new ToolkitViewModel([], patterns);
       viewModel.sortPatterns();
       
       it("should return the patterns sorted by 'pattern' property, then by 'amount' property", function() {

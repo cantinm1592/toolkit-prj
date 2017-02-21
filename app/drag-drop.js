@@ -4,12 +4,12 @@ var FileHelper = window.FileHelper;
 var CSVParser = window.CSVParser;
 var TransactionFilter = window.TransactionFilter;
 var TransactionViewModel = window.TransactionViewModel;
-var TransactionsViewModel = window.TransactionsViewModel;
+var ToolkitViewModel = window.ToolkitViewModel;
 
 var ko = window.ko;
 var logger = window.log;
 var patterns = null;
-var transactionsViewModel = null;
+var viewModel = null;
 
 var initialTransactions = [];
 /*
@@ -20,8 +20,8 @@ initialTransactions.push(new TransactionViewModel("2017-01-01", "RETRAIT AU GA",
 
 FileHelper.parseJSON("GET", "patterns.json", function(jsonObject) {
   patterns = jsonObject;
-  transactionsViewModel = new TransactionsViewModel(initialTransactions, patterns);
-  ko.applyBindings(transactionsViewModel);
+  viewModel = new ToolkitViewModel(initialTransactions, patterns);
+  ko.applyBindings(viewModel);
 });
 
 var dropZone = document.getElementById('drop-zone');
@@ -45,10 +45,10 @@ dropZone.ondrop = function(e) {
       var transactions = new TransactionFilter().process(lines);
       
       transactions.forEach(function(transaction) {
-        transactionsViewModel.addTransaction(TransactionViewModel.createFromTransaction(transaction));
+        viewModel.addTransaction(TransactionViewModel.createFromTransaction(transaction));
       });
       
-      transactionsViewModel.applyPatterns();
+      viewModel.applyPatterns();
     });
   }
   
