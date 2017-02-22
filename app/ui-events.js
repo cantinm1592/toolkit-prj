@@ -23,9 +23,10 @@ $(document).keydown(function(e) {
     
     if(newRuleModalVisible && e.keyCode === 13) {
       e.preventDefault();
-      window.viewModel.addRule($("#descriptionPattern").val(), $("#budgetItem").val());
+      window.viewModel.addRule($("#descriptionPattern").val(), $("#budgetItem").val(), $("#amountPattern").val());
       $("#descriptionPattern").val("");
       $("#budgetItem").val("");
+      $("#amountPattern").val("*");
       $('#new-rule-modal').modal('hide');
     }
     else if(!newRuleModalVisible && e.keyCode === 78) {

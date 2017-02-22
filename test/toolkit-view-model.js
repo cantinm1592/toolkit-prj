@@ -17,7 +17,6 @@ logger.setLevel('info');
 var CSVParser = require('../app/csv-parser.js');
 var TransactionFilter = require('../app/transaction-filter.js');
 var TransactionViewModel = require('../app/transaction-view-model.js');
-var RuleViewModel = require('../app/rule-view-model.js');
 var ToolkitViewModel = require('../app/toolkit-view-model.js');
 
 describe("ToolkitViewModel", function() {
@@ -55,25 +54,41 @@ describe("ToolkitViewModel", function() {
 
   });
   
-  describe("#addRule()", function() {
+  describe("#addRule(descriptionPattern, budgetItem, amountPattern)", function() {
     
-    var transactions = [];
-    transactions.push(new TransactionViewModel("2017-01-01", "IGA LACOSTE", "25.00", "MASTERCARD", "Maxime"));
-    transactions.push(new TransactionViewModel("2017-01-01", "TAIPHON", "17.00", "MASTERCARD", "Maxime"));
-    transactions.push(new TransactionViewModel("2017-01-01", "RETRAIT AU GA", "100.00", "EOP", "Maxime", "Argent comptant"));
-    
-    var viewModel = new ToolkitViewModel(transactions, [{"descriptionPattern": "TAIPHON", "budgetItem": "Lunch"}]);
-    
-    viewModel.addRule("IGA", "Épicerie");
-    
-    it("should add the rule at the beginning of the rules array", function() {
-      expect(viewModel.rules()[0].descriptionPattern()).to.equal("IGA");
+    context("with the first 2 parameters", function() {
+      var transactions = [];
+      transactions.push(new TransactionViewModel("2017-01-01", "IGA LACOSTE", "25,00", "MASTERCARD", "Maxime"));
+      transactions.push(new TransactionViewModel("2017-01-01", "TAIPHON", "17,00", "MASTERCARD", "Maxime"));
+      transactions.push(new TransactionViewModel("2017-01-01", "RETRAIT AU GA", "100,00", "EOP", "Maxime"));
+      var viewModel = new ToolkitViewModel(transactions, [{"descriptionPattern": "TAIPHON", "budgetItem": "Lunch"}]);
+      viewModel.addRule("IGA", "Épicerie");
+      it("should add the rule at the beginning of the rules array", function() {
+        expect(viewModel.rules()[0].descriptionPattern()).to.equal("IGA");
+        expect(viewModel.rules()[0].budgetItem()).to.equal("Épicerie");
+        expect(viewModel.rules()[0].amountPattern()).to.equal("*");
+      });
+      it("should reapply the rules to the transactions", function() {
+        expect(viewModel.transactions()[0].budgetItem()).to.equal("Épicerie");
+      });
     });
     
-    it("should reapply the rules to the transactions", function() {
-      expect(viewModel.transactions()[0].budgetItem()).to.equal("Épicerie");
+    context("with the 3 parameters", function() {
+      var transactions = [];
+      transactions.push(new TransactionViewModel("2017-01-01", "IGA LACOSTE", "25,00", "MASTERCARD", "Maxime"));
+      transactions.push(new TransactionViewModel("2017-01-01", "TAIPHON", "17,00", "MASTERCARD", "Maxime"));
+      transactions.push(new TransactionViewModel("2017-01-01", "RETRAIT AU GA", "100,00", "EOP", "Maxime"));
+      var viewModel = new ToolkitViewModel(transactions, [{"descriptionPattern": "TAIPHON", "budgetItem": "Lunch"}]);
+      viewModel.addRule("RETRAIT", "Massages", "100,00");
+      it("should add the rule at the beginning of the rules array", function() {
+        expect(viewModel.rules()[0].descriptionPattern()).to.equal("RETRAIT");
+        expect(viewModel.rules()[0].budgetItem()).to.equal("Massages");
+        expect(viewModel.rules()[0].amountPattern()).to.equal("100,00");
+      });
+      it("should reapply the rules to the transactions", function() {
+        expect(viewModel.transactions()[2].budgetItem()).to.equal("Massages");
+      });
     });
-    
   });
   
   describe("#applyRules()", function() {

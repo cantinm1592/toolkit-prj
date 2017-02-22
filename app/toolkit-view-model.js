@@ -40,15 +40,17 @@
     }
   };
   
-  ToolkitViewModel.prototype.addRule = function(descriptionPattern, budgetItem) {
-    this.rules.unshift(new RuleViewModel(descriptionPattern, budgetItem));
+  ToolkitViewModel.prototype.addRule = function(descriptionPattern, budgetItem, amountPattern) {
+    this.rules.unshift(new RuleViewModel(descriptionPattern, budgetItem, amountPattern));
     this.applyRules();
   };
   
   ToolkitViewModel.prototype.applyRules = function() {
     var rules = this.rules();
+    //console.log("rules =", rules);
     ko.utils.arrayForEach(this.transactions(), function(transaction){
       for(var i = 0; i < rules.length; i++) {
+        //console.log("testing rule (descriptionPattern='" + rules[i].descriptionPattern() + "', amountPattern='" + rules[i].amountPattern() + "')");
         if(transaction.description().includes(rules[i].descriptionPattern())) {
           var amountPattern = rules[i].amountPattern();
           if(amountPattern === undefined || amountPattern === '' || amountPattern === '*' || transaction.amount() === amountPattern) {
