@@ -8,7 +8,7 @@ var ToolkitViewModel = window.ToolkitViewModel;
 
 var ko = window.ko;
 var logger = window.log;
-var patterns = null;
+var rules = null;
 var viewModel = null;
 
 var initialTransactions = [];
@@ -18,9 +18,9 @@ initialTransactions.push(new TransactionViewModel("2017-01-01", "TAIPHON", "17.0
 initialTransactions.push(new TransactionViewModel("2017-01-01", "RETRAIT AU GA", "100.00", "EOP", "Maxime", "Argent comptant"));
 */
 
-FileHelper.parseJSON("GET", "patterns.json", function(jsonObject) {
-  patterns = jsonObject;
-  viewModel = new ToolkitViewModel(initialTransactions, patterns);
+FileHelper.parseJSON("GET", "rules.json", function(jsonObject) {
+  rules = jsonObject;
+  viewModel = new ToolkitViewModel(initialTransactions, rules);
   ko.applyBindings(viewModel);
 });
 
@@ -48,7 +48,7 @@ dropZone.ondrop = function(e) {
         viewModel.addTransaction(TransactionViewModel.createFromTransaction(transaction));
       });
       
-      viewModel.applyPatterns();
+      viewModel.applyRules();
     });
   }
   

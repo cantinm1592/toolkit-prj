@@ -1,206 +1,206 @@
 [
   {
-    "pattern": "WILLIAM J WALTER",
+    "descriptionPattern": "WILLIAM J WALTER",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "A&W",
+    "descriptionPattern": "A&W",
     "budgetItem": "Restaurants"
   },
   {
-    "pattern": "ALFA",
+    "descriptionPattern": "ALFA",
     "budgetItem": "Restaurants"
   },
   {
-    "pattern": "AQUANIMO",
+    "descriptionPattern": "AQUANIMO",
     "budgetItem": "Animaux"
   },
   {
-    "pattern": "ATTI",
+    "descriptionPattern": "ATTI",
     "budgetItem": "Lunch"
   },
   {
-    "pattern": "AUBAINERIE",
+    "descriptionPattern": "AUBAINERIE",
     "budgetItem": "Vetements"
   },
   {
-    "pattern": "AVRIL",
+    "descriptionPattern": "AVRIL",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "BABINE GOURMANDE",
+    "descriptionPattern": "BABINE GOURMANDE",
     "budgetItem": "Restaurants"
   },
   {
-    "pattern": "COSTCO",
+    "descriptionPattern": "COSTCO",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "CPE",
+    "descriptionPattern": "CPE",
     "budgetItem": "Garderie"
   },
   {
-    "pattern": "ADONIS",
+    "descriptionPattern": "ADONIS",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "BASHA",
+    "descriptionPattern": "BASHA",
     "budgetItem": "Lunch"
   },
   {
-    "pattern": "Assurance automobile",
+    "descriptionPattern": "Assurance automobile",
     "budgetItem": "Assurance-auto"
   },
   {
-    "pattern": "Assurance biens",
+    "descriptionPattern": "Assurance biens",
     "budgetItem": "Assurance-habitation"
   },
   {
-    "pattern": "Assurance vie",
+    "descriptionPattern": "Assurance vie",
     "budgetItem": "Assurance-vie"
   },
   {
-    "pattern": "BELL",
+    "descriptionPattern": "BELL",
     "budgetItem": "Télécommunications"
   },
   {
-    "pattern": "BILLETTERIE",
+    "descriptionPattern": "BILLETTERIE",
     "budgetItem": "Transports collectifs "
   },
   {
-    "pattern": "HOUTTE",
+    "descriptionPattern": "HOUTTE",
     "budgetItem": "Cafés"
   },
   {
-    "pattern": "CAFE DEPOT",
+    "descriptionPattern": "CAFE DEPOT",
     "budgetItem": "Cafés"
   },
   {
-    "pattern": "CAFE HUMBLE LION",
+    "descriptionPattern": "CAFE HUMBLE LION",
     "budgetItem": "Cafés"
   },
   {
-    "pattern": "CSMV SDG",
+    "descriptionPattern": "CSMV SDG",
     "budgetItem": "Service de garde"
   },
   {
-    "pattern": "ET 2",
+    "descriptionPattern": "ET 2",
     "budgetItem": "Réserve annuelle"
   },
   {
-    "pattern": "ET 3",
+    "descriptionPattern": "ET 3",
     "budgetItem": "Réserve taxes"
   },
   {
-    "pattern": "Frais fixes d'utilisation",
+    "descriptionPattern": "Frais fixes d'utilisation",
     "budgetItem": "Frais bancaires"
   },
   {
-    "pattern": "IGA",
+    "descriptionPattern": "IGA",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "IMPARK",
+    "descriptionPattern": "IMPARK",
     "budgetItem": "Stationnement"
   },
   {
-    "pattern": "JAVA-U",
+    "descriptionPattern": "JAVA-U",
     "budgetItem": "Cafés"
   },
   {
-    "pattern": "JEAN COUTU",
+    "descriptionPattern": "JEAN COUTU",
     "budgetItem": "Pharmarcie"
   },
   {
-    "pattern": "MAXI",
+    "descriptionPattern": "MAXI",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "MCDO",
+    "descriptionPattern": "MCDO",
     "budgetItem": "Restaurants"
   },
   {
-    "pattern": "METRO ",
+    "descriptionPattern": "METRO ",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "MICROSOFT",
+    "descriptionPattern": "MICROSOFT",
     "budgetItem": "Office 365"
   },
   {
-    "pattern": "NARCISSE",
+    "descriptionPattern": "NARCISSE",
     "budgetItem": "Coiffeuse"
   },
   {
-    "pattern": "NAGOYA",
+    "descriptionPattern": "NAGOYA",
     "budgetItem": "Lunch"
   },
   {
-    "pattern": "NETFLIX",
+    "descriptionPattern": "NETFLIX",
     "budgetItem": "Netflix"
   },
   {
-    "pattern": "LUFA",
+    "descriptionPattern": "LUFA",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "OZEN",
+    "descriptionPattern": "OZEN",
     "budgetItem": "Restaurants"
   },
   {
-    "pattern": "MOISSON",
+    "descriptionPattern": "MOISSON",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "PRECISE PARK",
+    "descriptionPattern": "PRECISE PARK",
     "budgetItem": "Stationnements"
   },
   {
-    "pattern": "PROVIGO",
+    "descriptionPattern": "PROVIGO",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "THAIPHON",
+    "descriptionPattern": "THAIPHON",
     "budgetItem": "Lunch"
   },
   {
-    "pattern": "Retrait au GA",
+    "descriptionPattern": "Retrait au GA",
     "budgetItem": "Argent comptant"
   },
   {
-    "pattern": "SAQ",
+    "descriptionPattern": "SAQ",
     "budgetItem": "Alcools"
   },
   {
-    "pattern": "STARBUCKS",
+    "descriptionPattern": "STARBUCKS",
     "budgetItem": "Restaurants"
   },
   {
-    "pattern": "STATIONNEMENT",
+    "descriptionPattern": "STATIONNEMENT",
     "budgetItem": "Stationnements"
   },
   {
-    "pattern": "STM",
+    "descriptionPattern": "STM",
     "budgetItem": "Transports collectifs"
   },
   {
-    "pattern": "SUPER C",
+    "descriptionPattern": "SUPER C",
     "budgetItem": "Épicerie"
   },
   {
-    "pattern": "TEXTURE",
+    "descriptionPattern": "TEXTURE",
     "budgetItem": "Texture"
   },
   {
-    "pattern": "UNIVERSITE DE SHERB",
+    "descriptionPattern": "UNIVERSITE DE SHERB",
     "budgetItem": "Stationnements"
   },
   {
-    "pattern": "HYDRO-QUEBEC",
+    "descriptionPattern": "HYDRO-QUEBEC",
     "budgetItem": "Électricité"
   },
   {
-    "pattern": "PR 02",
+    "descriptionPattern": "PR 02",
     "budgetItem": "Hypothèque"
   }
 ]

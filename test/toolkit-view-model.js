@@ -17,6 +17,7 @@ logger.setLevel('info');
 var CSVParser = require('../app/csv-parser.js');
 var TransactionFilter = require('../app/transaction-filter.js');
 var TransactionViewModel = require('../app/transaction-view-model.js');
+var RuleViewModel = require('../app/rule-view-model.js');
 var ToolkitViewModel = require('../app/toolkit-view-model.js');
 
 describe("ToolkitViewModel", function() {
@@ -54,14 +55,35 @@ describe("ToolkitViewModel", function() {
 
   });
   
-  describe("#applyPatterns()", function() {
+  describe("#addRule()", function() {
     
-    context("when the pattern is : pattern='PATTERN', amount='*'", function() {
+    var transactions = [];
+    transactions.push(new TransactionViewModel("2017-01-01", "IGA LACOSTE", "25.00", "MASTERCARD", "Maxime"));
+    transactions.push(new TransactionViewModel("2017-01-01", "TAIPHON", "17.00", "MASTERCARD", "Maxime"));
+    transactions.push(new TransactionViewModel("2017-01-01", "RETRAIT AU GA", "100.00", "EOP", "Maxime", "Argent comptant"));
+    
+    var viewModel = new ToolkitViewModel(transactions, [{"descriptionPattern": "TAIPHON", "budgetItem": "Lunch"}]);
+    
+    viewModel.addRule("IGA", "Épicerie");
+    
+    it("should add the rule at the beginning of the rules array", function() {
+      expect(viewModel.rules()[0].descriptionPattern()).to.equal("IGA");
+    });
+    
+    it("should reapply the rules to the transactions", function() {
+      expect(viewModel.transactions()[0].budgetItem()).to.equal("Épicerie");
+    });
+    
+  });
+  
+  describe("#applyRules()", function() {
+    
+    context("when the descriptionPattern is : descriptionPattern='PATTERN', amountPattern='*'", function() {
       
-      it("shoud set the budgetItem of transactions that have a description that matches the pattern", function() {
+      it("shoud set the budgetItem of transactions that have a description that matches the descriptionPattern", function() {
         
-        var patterns = [{"pattern": "IGA", "amount": "*", "budgetItem": "Épicerie"}];
-        var viewModel = new ToolkitViewModel([], patterns);
+        var rules = [{"descriptionPattern": "IGA", "amountPattern": "*", "budgetItem": "Épicerie"}];
+        var viewModel = new ToolkitViewModel([], rules);
         
         var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
         var lines = new CSVParser().parse(buffer);
@@ -71,11 +93,10 @@ describe("ToolkitViewModel", function() {
           viewModel.addTransaction(TransactionViewModel.createFromTransaction(transaction));
         });
         
-        viewModel.applyPatterns();
+        viewModel.applyRules();
         
         var budgetItemFound = 0;
         ko.utils.arrayForEach(viewModel.transactions(), function(transaction) {
-          //console.log(transaction.budgetItem());
           if(transaction.budgetItem() === 'Épicerie') {
             budgetItemFound++;
           }
@@ -85,12 +106,12 @@ describe("ToolkitViewModel", function() {
       });
     });
     
-    context("when the pattern is : pattern='PATTERN', amount='9,99'", function() {
+    context("when the descriptionPattern is : descriptionPattern='PATTERN', amountPattern='9,99'", function() {
       
-      it("shoud set the budgetItem of transactions that have a description that matches the pattern and that have the exact amount", function() {
+      it("shoud set the budgetItem of transactions that have a description that matches the descriptionPattern and that have the exact amountPattern", function() {
         
-        var patterns = [{"pattern": "ITUNES", "amount": "1,48", "budgetItem": "iCloud Storage"}];
-        var viewModel = new ToolkitViewModel([], patterns);
+        var rules = [{"descriptionPattern": "ITUNES", "amountPattern": "1,48", "budgetItem": "iCloud Storage"}];
+        var viewModel = new ToolkitViewModel([], rules);
         
         var buffer = fs.readFileSync(path.join(__dirname, 'mastercard_20161123.csv'), "utf8");
         var lines = new CSVParser().parse(buffer);
@@ -100,11 +121,10 @@ describe("ToolkitViewModel", function() {
           viewModel.addTransaction(TransactionViewModel.createFromTransaction(transaction));
         });
         
-        viewModel.applyPatterns();
+        viewModel.applyRules();
         
         var budgetItemFound = 0;
         ko.utils.arrayForEach(viewModel.transactions(), function(transaction) {
-          //console.log(transaction.budgetItem());
           if(transaction.budgetItem() === 'iCloud Storage') {
             budgetItemFound++;
           }
@@ -114,30 +134,35 @@ describe("ToolkitViewModel", function() {
       });
     });
 
-    describe("#sortPatterns()", function() {
-      
-      var patterns = [ { "pattern": "VALENTINE", "amount": "*", "budgetItem": "Restaurants" },
-                       { "pattern": "ITUNES", "amount": "14,99", "budgetItem": "Apple Music" },
-                       { "pattern": "ITUNES", "amount": "1,48", "budgetItem": "iCloud Storage" },
-                       { "pattern": "PROVIGO", "amount": "*", "budgetItem": "Épicerie" } ];
-                       
-      var viewModel = new ToolkitViewModel([], patterns);
-      viewModel.sortPatterns();
-      
-      it("should return the patterns sorted by 'pattern' property, then by 'amount' property", function() {
-        expect(viewModel.patterns()[0].pattern()).to.equal("ITUNES");
-        expect(viewModel.patterns()[0].amount()).to.equal("1,48");
-        
-        expect(viewModel.patterns()[1].pattern()).to.equal("ITUNES");
-        expect(viewModel.patterns()[1].amount()).to.equal("14,99");
-        
-        expect(viewModel.patterns()[2].pattern()).to.equal("PROVIGO");
-        expect(viewModel.patterns()[3].pattern()).to.equal("VALENTINE");
-      });
-                       
-    });
+    
 
   });
   
+  describe("#sortRules()", function() {
+      
+    var rules = [ { "descriptionPattern": "VALENTINE", "amountPattern": "*", "budgetItem": "Restaurants" },
+                     { "descriptionPattern": "ITUNES", "amountPattern": "14,99", "budgetItem": "Apple Music" },
+                     { "descriptionPattern": "ITUNES", "amountPattern": "1,48", "budgetItem": "iCloud Storage" },
+                     { "descriptionPattern": "PROVIGO", "amountPattern": "*", "budgetItem": "Épicerie" } ];
+                     
+    var viewModel = new ToolkitViewModel([], rules);
+    
+    viewModel.sortRules();
+    
+    it("should return the rules sorted by 'descriptionPattern' property, then by 'amountPattern' property", function() {
+      expect(viewModel.rules()[0].descriptionPattern()).to.equal("ITUNES");
+      expect(viewModel.rules()[0].amountPattern()).to.equal("1,48");
+      
+      expect(viewModel.rules()[1].descriptionPattern()).to.equal("ITUNES");
+      expect(viewModel.rules()[1].amountPattern()).to.equal("14,99");
+      
+      expect(viewModel.rules()[2].descriptionPattern()).to.equal("PROVIGO");
+      expect(viewModel.rules()[2].amountPattern()).to.equal("*");
+      
+      expect(viewModel.rules()[3].descriptionPattern()).to.equal("VALENTINE");
+      expect(viewModel.rules()[3].amountPattern()).to.equal("*");
+    });
+                       
+  });
     
 });

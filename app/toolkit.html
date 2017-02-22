@@ -45,7 +45,7 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="input">Input</a></li>
           <li><a id="transactions-nav" href="transactions">Transactions</a></li>
-          <li><a href="patterns">Patterns</a></li>
+          <li><a href="rules">Rules</a></li>
         </ul>
       </div>
     </nav>
@@ -83,8 +83,8 @@
   			  <div style="display: inline-block">
   			   <button class="btn btn-primary" type="button"><span data-bind="text: transactions().length"></span> transactions</button>
    			   <button class="btn btn-danger" type="button"><span data-bind="text: uncategorizedCount"></span> uncategorized</button>
-   			   <button class="btn btn-default" type="button" data-toggle="modal" data-target="#new-pattern-modal">New pattern</button>
-   			   <button class="btn btn-default" type="button" data-bind="click: applyPatterns">Apply patterns</button>
+   			   <button class="btn btn-default" type="button" data-toggle="modal" data-target="#new-rule-modal">New rule</button>
+   			   <button class="btn btn-default" type="button" data-bind="click: applyRules">Apply rules</button>
   			  </div>
   				<div class="dropdown" style="display: inline-block">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -129,17 +129,17 @@
     <!-- == PANEL : PATTERNS ======================================================================= -->
   	<!-- =========================================================================================== -->
 		
-		<div id="patterns-panel" class="panel panel-default" style="display: none">
+		<div id="rules-panel" class="panel panel-default" style="display: none">
 			<div class="panel-heading">
 			  <div style="display: inline-block">
   				<h4>
-  					<strong>Patterns</strong>
+  					<strong>Rules</strong>
   				</h4>
 				</div>
 				<div style="float: right">
-          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#new-pattern-modal">New</button>
-          <button class="btn btn-default" type="button" data-bind="click: sortPatterns">Sort</button>          
-          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#export-patterns-modal">Export</button>
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#new-rule-modal">New</button>
+          <button class="btn btn-default" type="button" data-bind="click: sortRules">Sort</button>          
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#export-rules-modal">Export</button>
         </div>				
 			</div>
 			<div class="panel-body">
@@ -147,14 +147,14 @@
           <thead>
             <tr>
               <th></th>
-              <th>Pattern</th>
+              <th>Description Pattern</th>
               <th>Budget Item</th>
             </tr>
           </thead>
-          <tbody data-bind="foreach: patterns">
+          <tbody data-bind="foreach: rules">
             <tr>
               <td><input type="checkbox"></td>
-              <td>"<span data-bind="text: pattern" style="white-space:PRE"></span>"</td>
+              <td>"<span data-bind="text: descriptionPattern" style="white-space:PRE"></span>"</td>
               <td data-bind="text: budgetItem"></td>
             </tr>
           </tbody>
@@ -164,21 +164,21 @@
 	</div>
 	
 	<!-- =========================================================================================== -->
-  <!-- == MODAL : ADD PATTERN ==================================================================== -->
+  <!-- == MODAL : ADD RULE ======================================================================= -->
 	<!-- =========================================================================================== -->
 	
-  <div id="new-pattern-modal" class="modal fade" role="dialog">
+  <div id="new-rule-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">New Pattern</h4>
+          <h4 class="modal-title">New Rule</h4>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="pattern">Pattern :</label>
-              <input type="text" class="form-control" id="pattern">
+              <label for="descriptionPattern">Description Pattern :</label>
+              <input type="text" class="form-control" id="descriptionPattern">
             </div>
             <div class="form-group">
               <label for="budgetItem">Budget Item :</label>
@@ -196,20 +196,20 @@
   </div>
   
 	<!-- =========================================================================================== -->
-  <!-- == MODAL : EXPORT PATTERNS ================================================================ -->
+  <!-- == MODAL : EXPORT RULES ================================================================ -->
 	<!-- =========================================================================================== -->
   
-  <div id="export-patterns-modal" class="modal" role="dialog">
+  <div id="export-rules-modal" class="modal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Export Patterns</h4>
+          <h4 class="modal-title">Export Rules</h4>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <textarea id="patterns-json" class="form-control" rows="20"></textarea>
+              <textarea id="rules-json" class="form-control" rows="20"></textarea>
             </div>
           </form>
         </div>
@@ -241,7 +241,7 @@
 <script src="bank-account-filter.js"></script>
 <script src="transaction-filter.js"></script>
 <script src="transaction-writer.js"></script>
-<script src="pattern-view-model.js"></script>
+<script src="rule-view-model.js"></script>
 <script src="transaction-view-model.js"></script>
 <script src="toolkit-view-model.js"></script>
 <script src="ui-events.js"></script>

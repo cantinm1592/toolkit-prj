@@ -19,53 +19,53 @@ $(document).keydown(function(e) {
   
   if(e.keyCode === 13 || e.keyCode === 78) {
     
-    var newPatternModalVisible = $('#new-pattern-modal').is(':visible');
+    var newRuleModalVisible = $('#new-rule-modal').is(':visible');
     
-    if(newPatternModalVisible && e.keyCode === 13) {
+    if(newRuleModalVisible && e.keyCode === 13) {
       e.preventDefault();
-      window.viewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
-      $("#pattern").val("");
+      window.viewModel.addRule($("#descriptionPattern").val(), $("#budgetItem").val());
+      $("#descriptionPattern").val("");
       $("#budgetItem").val("");
-      $('#new-pattern-modal').modal('hide');
+      $('#new-rule-modal').modal('hide');
     }
-    else if(!newPatternModalVisible && e.keyCode === 78) {
+    else if(!newRuleModalVisible && e.keyCode === 78) {
       e.preventDefault();
       if (window.getSelection) {
-        $("#pattern").val(window.getSelection().toString());
+        $("#descriptionPattern").val(window.getSelection().toString());
       }
-      $('#new-pattern-modal').modal('show');
+      $('#new-rule-modal').modal('show');
     }
   }
 });
 
-$("#new-pattern-modal").on("shown.bs.modal", function() {
-  if($("#pattern").val() === '') {
-    $("#pattern").focus();
+$("#new-rule-modal").on("shown.bs.modal", function() {
+  if($("#descriptionPattern").val() === '') {
+    $("#descriptionPattern").focus();
   }
   else {
     $("#budgetItem").focus();
   }
 });
 
-$('#new-pattern-modal .modal-footer button').on('click', function(e) {
+$('#new-rule-modal .modal-footer button').on('click', function(e) {
   
   var $button = $(e.target);
   
   $(this).closest('.modal').one('hidden.bs.modal', function() {
     
     if($button.attr('id') === 'create-button') {
-      window.viewModel.addPattern($("#pattern").val(), $("#budgetItem").val());
+      window.viewModel.addRule($("#descriptionPattern").val(), $("#budgetItem").val());
     }
     
-    $("#pattern").val("");
+    $("#descriptionPattern").val("");
     $("#budgetItem").val("");
     $(".btn").blur();
   });
   
 });
 
-$("#export-patterns-modal").on("shown.bs.modal", function() {
-  $("#patterns-json").val(JSON.stringify(ko.toJS(window.viewModel.patterns()),null, 2));
+$("#export-rules-modal").on("shown.bs.modal", function() {
+  $("#rules-json").val(JSON.stringify(ko.toJS(window.viewModel.rules()),null, 2));
 });
 
 $('.btn').on('click', function() {

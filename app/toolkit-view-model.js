@@ -1,19 +1,19 @@
 /* eslint-env browser, node */
 (function() {
   
-  var PatternViewModel = typeof window !== 'undefined' ? window.PatternViewModel : require("./pattern-view-model.js");
+  var RuleViewModel = typeof window !== 'undefined' ? window.RuleViewModel : require("./rule-view-model.js");
   var ko = typeof window !== 'undefined' ? window.ko : require('knockout');
 
-  var ToolkitViewModel = function(transactions, patterns) {
+  var ToolkitViewModel = function(transactions, rules) {
     
     this.selectedTransactions = ko.observableArray();
     this.transactions = ko.observableArray(transactions !== undefined ? transactions : null);
-    this.patterns = ko.observableArray();
+    this.rules = ko.observableArray();
     
-    if(patterns !== undefined) {
-      var patternsObservableArray = this.patterns;
-      patterns.forEach(function(pattern) {
-        patternsObservableArray().push(PatternViewModel.createFromPattern(pattern));
+    if(rules !== undefined) {
+      var rulesObservableArray = this.rules;
+      rules.forEach(function(rule) {
+        rulesObservableArray().push(RuleViewModel.createFromRule(rule));
       });
     }
     
@@ -40,19 +40,19 @@
     }
   };
   
-  ToolkitViewModel.prototype.addPattern = function(pattern, budgetItem) {
-    this.patterns.unshift(new PatternViewModel(pattern, budgetItem));
-    this.applyPatterns();
+  ToolkitViewModel.prototype.addRule = function(descriptionPattern, budgetItem) {
+    this.rules.unshift(new RuleViewModel(descriptionPattern, budgetItem));
+    this.applyRules();
   };
   
-  ToolkitViewModel.prototype.applyPatterns = function() {
-    var patterns = this.patterns();
+  ToolkitViewModel.prototype.applyRules = function() {
+    var rules = this.rules();
     ko.utils.arrayForEach(this.transactions(), function(transaction){
-      for(var i = 0; i < patterns.length; i++) {
-        if(transaction.description().includes(patterns[i].pattern())) {
-          var patternAmount = patterns[i].amount();
-          if(patternAmount === undefined || patternAmount === '' || patternAmount === '*' || transaction.amount() === patternAmount) {
-            transaction.budgetItem(patterns[i].budgetItem());
+      for(var i = 0; i < rules.length; i++) {
+        if(transaction.description().includes(rules[i].descriptionPattern())) {
+          var amountPattern = rules[i].amountPattern();
+          if(amountPattern === undefined || amountPattern === '' || amountPattern === '*' || transaction.amount() === amountPattern) {
+            transaction.budgetItem(rules[i].budgetItem());
           }
           break;
         }
@@ -60,12 +60,12 @@
     });
   };
   
-  ToolkitViewModel.prototype.sortPatterns = function() {
-    this.patterns.sort(function(left, right) {
-      if(left.pattern() === right.pattern()) {
-        return left.amount() === right.amount() ? 0 : left.amount() < right.amount() ? -1 : 1;
+  ToolkitViewModel.prototype.sortRules = function() {
+    this.rules.sort(function(left, right) {
+      if(left.descriptionPattern() === right.descriptionPattern()) {
+        return left.amountPattern() === right.amountPattern() ? 0 : left.amountPattern() < right.amountPattern() ? -1 : 1;
       }
-      return left.pattern() < right.pattern() ? -1 : 1;
+      return left.descriptionPattern() < right.descriptionPattern() ? -1 : 1;
     });
   };
 
