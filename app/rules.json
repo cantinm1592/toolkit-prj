@@ -1,206 +1,407 @@
 [
   {
-    "descriptionPattern": "WILLIAM J WALTER",
+    "descriptionPattern": "MARCHE LONG PHAT",
+    "amountPattern": "*",
     "budgetItem": "Épicerie"
   },
   {
-    "descriptionPattern": "A&W",
+    "descriptionPattern": "PHARMA",
+    "amountPattern": "*",
+    "budgetItem": "Pharmacie"
+  },
+  {
+    "descriptionPattern": "MARCHE CARRIER",
+    "amountPattern": "*",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "descriptionPattern": "DR ANDRE LAVALLEE",
+    "amountPattern": "*",
+    "budgetItem": "Soins dentaires"
+  },
+  {
+    "descriptionPattern": "DOMINOS",
+    "amountPattern": "*",
     "budgetItem": "Restaurants"
   },
   {
+    "descriptionPattern": "A&W",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "descriptionPattern": "ADONIS",
+    "amountPattern": "*",
+    "budgetItem": "Épicerie"
+  },
+  {
     "descriptionPattern": "ALFA",
+    "amountPattern": "*",
     "budgetItem": "Restaurants"
   },
   {
     "descriptionPattern": "AQUANIMO",
+    "amountPattern": "*",
     "budgetItem": "Animaux"
   },
   {
+    "descriptionPattern": "ASHA",
+    "amountPattern": "*",
+    "budgetItem": "Lunch"
+  },
+  {
     "descriptionPattern": "ATTI",
+    "amountPattern": "*",
     "budgetItem": "Lunch"
   },
   {
     "descriptionPattern": "AUBAINERIE",
+    "amountPattern": "*",
     "budgetItem": "Vetements"
   },
   {
     "descriptionPattern": "AVRIL",
+    "amountPattern": "*",
     "budgetItem": "Épicerie"
-  },
-  {
-    "descriptionPattern": "BABINE GOURMANDE",
-    "budgetItem": "Restaurants"
-  },
-  {
-    "descriptionPattern": "COSTCO",
-    "budgetItem": "Épicerie"
-  },
-  {
-    "descriptionPattern": "CPE",
-    "budgetItem": "Garderie"
-  },
-  {
-    "descriptionPattern": "ADONIS",
-    "budgetItem": "Épicerie"
-  },
-  {
-    "descriptionPattern": "BASHA",
-    "budgetItem": "Lunch"
   },
   {
     "descriptionPattern": "Assurance automobile",
+    "amountPattern": "*",
     "budgetItem": "Assurance-auto"
   },
   {
     "descriptionPattern": "Assurance biens",
+    "amountPattern": "*",
     "budgetItem": "Assurance-habitation"
   },
   {
     "descriptionPattern": "Assurance vie",
+    "amountPattern": "*",
     "budgetItem": "Assurance-vie"
   },
   {
+    "descriptionPattern": "BABINE GOURMANDE",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "descriptionPattern": "BASHA",
+    "amountPattern": "*",
+    "budgetItem": "Lunch"
+  },
+  {
     "descriptionPattern": "BELL",
+    "amountPattern": "*",
     "budgetItem": "Télécommunications"
   },
   {
     "descriptionPattern": "BILLETTERIE",
+    "amountPattern": "*",
     "budgetItem": "Transports collectifs "
   },
   {
-    "descriptionPattern": "HOUTTE",
-    "budgetItem": "Cafés"
+    "descriptionPattern": "BISTRO ISAKAYA",
+    "amountPattern": "*",
+    "budgetItem": "Lunch"
   },
   {
     "descriptionPattern": "CAFE DEPOT",
+    "amountPattern": "*",
     "budgetItem": "Cafés"
   },
   {
     "descriptionPattern": "CAFE HUMBLE LION",
+    "amountPattern": "*",
     "budgetItem": "Cafés"
   },
   {
+    "descriptionPattern": "COSTCO",
+    "amountPattern": "*",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "descriptionPattern": "CPE",
+    "amountPattern": "*",
+    "budgetItem": "Garderie"
+  },
+  {
     "descriptionPattern": "CSMV SDG",
+    "amountPattern": "*",
     "budgetItem": "Service de garde"
   },
   {
+    "descriptionPattern": "DELI 500",
+    "amountPattern": "*",
+    "budgetItem": "Lunch"
+  },
+  {
+    "descriptionPattern": "ES CAFE LAUZON",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "descriptionPattern": "ET 1",
+    "amountPattern": "*",
+    "budgetItem": "Réserve enfants"
+  },
+  {
     "descriptionPattern": "ET 2",
+    "amountPattern": "*",
     "budgetItem": "Réserve annuelle"
   },
   {
     "descriptionPattern": "ET 3",
+    "amountPattern": "*",
     "budgetItem": "Réserve taxes"
   },
   {
     "descriptionPattern": "Frais fixes d'utilisation",
+    "amountPattern": "*",
     "budgetItem": "Frais bancaires"
   },
   {
+    "descriptionPattern": "HARVEYS",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "descriptionPattern": "HOUTTE",
+    "amountPattern": "*",
+    "budgetItem": "Cafés"
+  },
+  {
+    "descriptionPattern": "HYDRO-QUEBEC",
+    "amountPattern": "*",
+    "budgetItem": "Électricité"
+  },
+  {
     "descriptionPattern": "IGA",
+    "amountPattern": "*",
     "budgetItem": "Épicerie"
   },
   {
     "descriptionPattern": "IMPARK",
+    "amountPattern": "*",
     "budgetItem": "Stationnement"
   },
   {
+    "descriptionPattern": "ITUNES",
+    "amountPattern": "1,48",
+    "budgetItem": "iCloud Storage"
+  },
+  {
+    "descriptionPattern": "ITUNES",
+    "amountPattern": "14,99",
+    "budgetItem": "Apple Music"
+  },
+  {
+    "descriptionPattern": "Imperial Oil",
+    "amountPattern": "*",
+    "budgetItem": "Essence"
+  },
+  {
     "descriptionPattern": "JAVA-U",
+    "amountPattern": "*",
     "budgetItem": "Cafés"
   },
   {
     "descriptionPattern": "JEAN COUTU",
+    "amountPattern": "*",
     "budgetItem": "Pharmarcie"
   },
   {
+    "descriptionPattern": "LE LUNCH",
+    "amountPattern": "*",
+    "budgetItem": "Traiteur"
+  },
+  {
+    "descriptionPattern": "LEONIDAS",
+    "amountPattern": "*",
+    "budgetItem": "Cadeaux"
+  },
+  {
+    "descriptionPattern": "LOLA ROSA",
+    "amountPattern": "*",
+    "budgetItem": "Lunch"
+  },
+  {
+    "descriptionPattern": "LUFA",
+    "amountPattern": "*",
+    "budgetItem": "Épicerie"
+  },
+  {
+    "descriptionPattern": "MADAME THAI",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "descriptionPattern": "MARCEL CANTIN",
+    "amountPattern": "*",
+    "budgetItem": "Réparation camion"
+  },
+  {
     "descriptionPattern": "MAXI",
+    "amountPattern": "*",
     "budgetItem": "Épicerie"
   },
   {
     "descriptionPattern": "MCDO",
+    "amountPattern": "*",
     "budgetItem": "Restaurants"
   },
   {
     "descriptionPattern": "METRO ",
+    "amountPattern": "*",
     "budgetItem": "Épicerie"
   },
   {
     "descriptionPattern": "MICROSOFT",
+    "amountPattern": "*",
     "budgetItem": "Office 365"
   },
   {
-    "descriptionPattern": "NARCISSE",
-    "budgetItem": "Coiffeuse"
+    "descriptionPattern": "MOISSON",
+    "amountPattern": "*",
+    "budgetItem": "Épicerie"
   },
   {
     "descriptionPattern": "NAGOYA",
+    "amountPattern": "*",
     "budgetItem": "Lunch"
   },
   {
+    "descriptionPattern": "NARCISSE",
+    "amountPattern": "*",
+    "budgetItem": "Coiffeuse"
+  },
+  {
+    "descriptionPattern": "NESPRESSO",
+    "amountPattern": "*",
+    "budgetItem": "Épicerie"
+  },
+  {
     "descriptionPattern": "NETFLIX",
+    "amountPattern": "*",
     "budgetItem": "Netflix"
   },
   {
-    "descriptionPattern": "LUFA",
-    "budgetItem": "Épicerie"
-  },
-  {
     "descriptionPattern": "OZEN",
+    "amountPattern": "*",
     "budgetItem": "Restaurants"
   },
   {
-    "descriptionPattern": "MOISSON",
-    "budgetItem": "Épicerie"
+    "descriptionPattern": "PHARMACIE",
+    "amountPattern": "*",
+    "budgetItem": "Pharmacie"
+  },
+  {
+    "descriptionPattern": "PHARMAPRIX",
+    "amountPattern": "*",
+    "budgetItem": "Pharmacie"
+  },
+  {
+    "descriptionPattern": "PIKOLO",
+    "amountPattern": "*",
+    "budgetItem": "Cafés"
+  },
+  {
+    "descriptionPattern": "PR 02",
+    "amountPattern": "*",
+    "budgetItem": "Hypothèque"
   },
   {
     "descriptionPattern": "PRECISE PARK",
+    "amountPattern": "*",
     "budgetItem": "Stationnements"
   },
   {
     "descriptionPattern": "PROVIGO",
+    "amountPattern": "*",
     "budgetItem": "Épicerie"
   },
   {
-    "descriptionPattern": "THAIPHON",
-    "budgetItem": "Lunch"
+    "descriptionPattern": "Paiement /VISA DESJARDINS",
+    "amountPattern": "*",
+    "budgetItem": "Laveuse-sécheuse"
+  },
+  {
+    "descriptionPattern": "ROTISSERIE ST HUBERT",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
   },
   {
     "descriptionPattern": "Retrait au GA",
+    "amountPattern": "*",
     "budgetItem": "Argent comptant"
   },
   {
     "descriptionPattern": "SAQ",
+    "amountPattern": "*",
     "budgetItem": "Alcools"
   },
   {
     "descriptionPattern": "STARBUCKS",
+    "amountPattern": "*",
     "budgetItem": "Restaurants"
   },
   {
     "descriptionPattern": "STATIONNEMENT",
+    "amountPattern": "*",
     "budgetItem": "Stationnements"
   },
   {
     "descriptionPattern": "STM",
+    "amountPattern": "*",
     "budgetItem": "Transports collectifs"
   },
   {
     "descriptionPattern": "SUPER C",
+    "amountPattern": "*",
     "budgetItem": "Épicerie"
   },
   {
+    "descriptionPattern": "SUSHI SHOP",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "descriptionPattern": "TAXES MUNICIPALES",
+    "amountPattern": "*",
+    "budgetItem": "Réserve taxes"
+  },
+  {
     "descriptionPattern": "TEXTURE",
+    "amountPattern": "*",
     "budgetItem": "Texture"
   },
   {
+    "descriptionPattern": "THAIPHON",
+    "amountPattern": "*",
+    "budgetItem": "Lunch"
+  },
+  {
+    "descriptionPattern": "TIM HORTONS",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
+  },
+  {
+    "descriptionPattern": "ULTRAMAR",
+    "amountPattern": "*",
+    "budgetItem": "Essence"
+  },
+  {
     "descriptionPattern": "UNIVERSITE DE SHERB",
+    "amountPattern": "*",
     "budgetItem": "Stationnements"
   },
   {
-    "descriptionPattern": "HYDRO-QUEBEC",
-    "budgetItem": "Électricité"
+    "descriptionPattern": "VINCENT SOUS-MARIN",
+    "amountPattern": "*",
+    "budgetItem": "Restaurants"
   },
   {
-    "descriptionPattern": "PR 02",
-    "budgetItem": "Hypothèque"
+    "descriptionPattern": "WILLIAM J WALTER",
+    "amountPattern": "*",
+    "budgetItem": "Épicerie"
   }
 ]
